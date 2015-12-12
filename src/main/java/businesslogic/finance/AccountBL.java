@@ -295,7 +295,7 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 				id[i][0] = sales.get(i).id;
 			}
 		}
-		else if(billtype.equals("进货类单据")){
+		else if(billtype.equals("快递接类单据")){
 			imports = getImportBL.getCheckedImport();
 			for(int i = 0; i < imports.size(); i++){
 				if(!(imports.get(i).user.equals(operator)) || !(imports.get(i).customer.equals(customer)) ||

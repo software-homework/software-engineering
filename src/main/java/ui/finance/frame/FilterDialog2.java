@@ -40,7 +40,7 @@ public class FilterDialog2 extends JDialog implements ActionListener{
 	int widthOfText2 = 270;
 	int heightOfText = 30;
 	
-	String[] bill = {"销售类单据", "进货类单据", "财务类单据", "库存类单据"};
+	String[] bill = {"销售类单据", "快递接类单据", "财务类单据", "库存类单据"};
 	JComboBox<String> billType = new JComboBox<String>(bill);
 	String[] s = {"仓库1"};
 	JComboBox<String> cangKu = new JComboBox<String>(s);

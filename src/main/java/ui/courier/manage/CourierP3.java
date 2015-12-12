@@ -169,7 +169,7 @@ public class CourierP3 extends JPanel{
 				addSalesframe.sp.showTable(addSalesframe.sp.data);
 				addSalesframe.sp.salesmain.setStatusBar("添加成功");
 				if(svo.id.substring(0, 3).equals("XSD")){
-					logbl.addLog(new LogVO(addSalesframe.username,"添加销售单"));
+					logbl.addLog(new LogVO(addSalesframe.username,"添加送货"));
 				}else{
 					logbl.addLog(new LogVO(addSalesframe.username,"添加销售退货单"));
 				}

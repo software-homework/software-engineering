@@ -49,7 +49,7 @@ public class ImportP2 extends JPanel{
 	Object[][] data;
 	String[] customername;
 	Object[][] newdata;
-	//进货单
+	//快递接单
 	public ImportP2(Object[][] cdata,AddImportFrame aif){
 		this.setLayout(new BorderLayout());
 		addImportframe=aif;
@@ -136,7 +136,7 @@ public class ImportP2 extends JPanel{
 		ActionListener lastlistener=new lastListener();
 		last.addActionListener(lastlistener);
 	}
-	//进货退货单
+	//快递接退货单
 	public ImportP2(Object[][] cdata,AddImportFrame aif,ImportVO ivo){
 		this.setLayout(new BorderLayout());
 		addImportframe=aif;
@@ -157,7 +157,7 @@ public class ImportP2 extends JPanel{
 		getrep.setEnabled(false);
         getcustomer=new JLabel(ivo.customer,JLabel.CENTER);
 		
-		String[] columnTitle={"退货数量","编号","名称","型号","进价(可修改)","进货数量"};
+		String[] columnTitle={"退货数量","编号","名称","型号","进价(可修改)","快递接数量"};
 		data=cdata;
 		commoditytable = new JTable(new TableModel(data, columnTitle){
 			public boolean isCellEditable(int row, int column) {

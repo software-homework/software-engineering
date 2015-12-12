@@ -140,7 +140,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 					if (((String) typeBC.getSelectedItem()).equals("物流人员")) {
 						new LogisticsMain(userVO);
 					} else if (((String) typeBC.getSelectedItem()).equals("快递员")) {
-						CourierMain salesMain = new CourierMain(userVO);
+						CourierMain courierMain = new CourierMain(userVO);
 					} else if (((String) typeBC.getSelectedItem()).equals("财务人员")) {
 						FinanceFrame financeFrame = new FinanceFrame(userVO);
 					} else if (((String) typeBC.getSelectedItem()).equals("总经理")) {

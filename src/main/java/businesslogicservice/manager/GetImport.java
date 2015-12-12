@@ -13,7 +13,7 @@ import vo.courier.*;
  */
 
 /*
- * 获得进货单信息接口
+ * 获得快递接单信息接口
  */
 public interface GetImport {
 	public boolean approvalImport(String id, int approval);

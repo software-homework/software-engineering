@@ -33,7 +33,7 @@ public class ImportP1 extends JPanel{
 	AddImportFrame addImportframe;
 	ImportVO importvo;
 	
-	//进货单
+	//快递接单
 	public ImportP1(AddImportFrame aif){
 		addImportframe=aif;
 		this.setLayout(new BorderLayout());
@@ -79,7 +79,7 @@ public class ImportP1 extends JPanel{
 	});
 	}
 	
-	//进货退货单
+	//快递接退货单
 	public ImportP1(AddImportFrame aif,ImportVO ivo){
 		addImportframe=aif;
 		importvo=new ImportVO();
@@ -88,7 +88,7 @@ public class ImportP1 extends JPanel{
 		
 		//表格
 		setData(ivo.importList);
-		String[] columnTitle={"","编号","名称","型号","默认进价","此单进货数量"};
+		String[] columnTitle={"","编号","名称","型号","默认进价","此单快递接数量"};
 		commoditytable = new JTable(new TableModel(data, columnTitle));
 		commoditytable.getColumnModel().getColumn(0).setMaxWidth(30);//设置第一列宽度
 		//确认面板

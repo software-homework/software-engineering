@@ -8,7 +8,7 @@ import javax.swing.table.TableModel;
 import vo.logistics.LogisticsVO;
 
 public class ShowLogisticsTable implements TableModel{
-	public String column[] = new String[]{"快递编号","快递名称","型号", "出库数量", "出库金额", "入库数量", "入库金额", "销售数量","销售金额","进货数量","进货金额","库存数量"};
+	public String column[] = new String[]{"快递编号","快递名称","型号", "出库数量", "出库金额", "入库数量", "入库金额", "销售数量","销售金额","快递接数量","快递接金额","库存数量"};
 	public ShowLogistics ss;
 	public ArrayList<LogisticsVO> stockList;
 	

@@ -29,7 +29,7 @@ import businesslogicservice.manager.ApprovalBLService;
  */
 
 /*
- * 进货类单据详细信息弹窗
+ * 快递接类单据详细信息弹窗
  */
 @SuppressWarnings("serial")
 public class ShowImport extends ShowApproval{
@@ -137,7 +137,7 @@ public class ShowImport extends ShowApproval{
 				if(bl.modifyImport(vo)) {
 					pane.frame.setStatusBar("修改成功");
 					LogBLService logBLService = new LogBL();
-					logBLService.addLog(new LogVO(pane.frame.getUserName(), "修改进货类单据"));
+					logBLService.addLog(new LogVO(pane.frame.getUserName(), "修改快递接类单据"));
 				}else {
 					pane.frame.setStatusBar("修改失败");
 				}

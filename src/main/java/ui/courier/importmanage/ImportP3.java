@@ -144,9 +144,9 @@ public class ImportP3 extends JPanel{
 			ivo.importList=clist;
 			ibl.CheckI(ivo);
 			if(ivo.id.substring(0, 3).equals("JHD")){
-				logbl.addLog(new LogVO(addImportframe.username,"添加进货单"));
+				logbl.addLog(new LogVO(addImportframe.username,"添加快递接单"));
 			}else{
-				logbl.addLog(new LogVO(addImportframe.username,"添加进货退货单"));
+				logbl.addLog(new LogVO(addImportframe.username,"添加快递接退货单"));
 			}
 			addImportframe.ip.setData();
 			addImportframe.ip.showTable(addImportframe.ip.data);

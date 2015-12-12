@@ -26,7 +26,7 @@ import businesslogicservice.manager.GetDocument;
  */
 
 /*
- * 显示进货类单据
+ * 显示快递接类单据
  */
 @SuppressWarnings("serial")
 public class ShowImp extends Show{

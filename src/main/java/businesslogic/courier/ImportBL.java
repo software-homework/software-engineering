@@ -28,7 +28,7 @@ public class ImportBL implements ImportBLService,businesslogic.logistics.GetImpo
 			e.printStackTrace();
 		}
 	}
-//得到进货单编号
+//得到快递接单编号
 	public String getiID() {
 		ArrayList<ImportPO> list = new ArrayList<ImportPO>();
 		list = data.getDataI();
@@ -47,7 +47,7 @@ public class ImportBL implements ImportBLService,businesslogic.logistics.GetImpo
 	    	return "JHD-"+(String)matter1.format(dt)+"-"+String.format("%05d",count);
 	    }
 	}
-//得到进货退货单编号
+//得到快递接退货单编号
 	public String getirID() {
 		ArrayList<ImportPO> list = new ArrayList<ImportPO>();
 		list = data.getDataI();
@@ -117,7 +117,7 @@ public class ImportBL implements ImportBLService,businesslogic.logistics.GetImpo
 						return false;
 					}
 					else{
-						sm.add(new MessageVO("进货",cvo.commodityname,cvo.model,cvo.number,importvo.customer,false));
+						sm.add(new MessageVO("快递接",cvo.commodityname,cvo.model,cvo.number,importvo.customer,false));
 					}
 				}
 			}
@@ -136,7 +136,7 @@ public class ImportBL implements ImportBLService,businesslogic.logistics.GetImpo
 						return false;
 					}
 					else{
-						sm.add(new MessageVO("进货退货",cvo.commodityname,cvo.model,cvo.number,importvo.customer,false));
+						sm.add(new MessageVO("快递接退货",cvo.commodityname,cvo.model,cvo.number,importvo.customer,false));
 					}
 				}
 			}

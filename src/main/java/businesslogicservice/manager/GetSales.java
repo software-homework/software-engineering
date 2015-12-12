@@ -13,7 +13,7 @@ import vo.courier.*;
  */
 
 /*
- * 获得销售单信息
+ * 获得送货信息
  */
 public interface GetSales {
 	public boolean approvalSales(String id, int approval);

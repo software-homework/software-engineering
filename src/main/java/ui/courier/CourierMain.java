@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
+import businesslogic.courier.CourierBL;
 import businesslogic.courier.CustomerBL;
 import businesslogic.courier.ImportBL;
-import businesslogic.courier.CourierBL;
+import businesslogicservice.courier.CourierBLService;
 import businesslogicservice.courier.CustomerBLService;
 import businesslogicservice.courier.ImportBLService;
-import businesslogicservice.courier.CourierBLService;
 import ui.courier.customer.CustomerPanel;
 import ui.courier.importmanage.ImportPanel;
 import ui.courier.manage.CourierPanel;
@@ -60,7 +60,7 @@ public class CourierMain extends JFrame {
 				frameHeight);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
-		this.setTitle("逆风快递系统-销售管理人员" + "    " + "账户名: " + uservo.name);
+		this.setTitle("逆风快递系统-快递员" + "    " + "账户名: " + uservo.name);
 
 		// 菜单定义
 		mb = new JMenuBar();
@@ -70,8 +70,8 @@ public class CourierMain extends JFrame {
 		exit = new JMenuItem("退出系统");
 		key = new JMenuItem("用户信息");
 		customer = new JMenuItem("客户管理");
-		addimport = new JMenuItem("进货单管理");
-		addsales = new JMenuItem("销售单管理");
+		addimport = new JMenuItem("快递接单管理");
+		addsales = new JMenuItem("送货管理");
 		system.add(key);
 		system.add(logout);
 		system.add(exit);

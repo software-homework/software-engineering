@@ -60,7 +60,7 @@ public class CourierP2 extends JPanel {
 	String[] customername;
 	Object[][] newdata;
 
-	// 销售单
+	// 送货
 	public CourierP2(Object[][] cdata, AddSalesFrame asf) {
 		this.setLayout(new BorderLayout());
 		addSalesframe = asf;

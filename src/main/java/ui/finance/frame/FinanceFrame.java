@@ -315,13 +315,13 @@ public class FinanceFrame extends JFrame implements ActionListener, MouseListene
 				new ShowDocument(this, "付款单", true, documentVO);
 			} else if (id.split("-")[0].equals("JHD")) {
 				ImportVO importVO = abl.findOneImport(id);
-				new ShowImport(this, "进货单", true, importVO);
+				new ShowImport(this, "快递接单", true, importVO);
 			} else if (id.split("-")[0].equals("JHTHD")) {
 				ImportVO importVO = abl.findOneImport(id);
-				new ShowImport(this, "进货退货单", true, importVO);
+				new ShowImport(this, "快递接退货单", true, importVO);
 			} else if (id.split("-")[0].equals("XSD")) {
 				CourierVO salesVO = abl.findOneSales(id);
-				new ShowSale(this, "销售单", true, salesVO);
+				new ShowSale(this, "送货", true, salesVO);
 			} else if (id.split("-")[0].equals("XSTHD")) {
 				CourierVO salesVO = abl.findOneSales(id);
 				new ShowSale(this, "销售退货单", true, salesVO);

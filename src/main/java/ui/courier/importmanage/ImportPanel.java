@@ -39,8 +39,8 @@ public class ImportPanel extends JPanel{
 		salesmain=sm;
 		ibl=new ImportBL();
 		
-		addImport=new JButton("制定进货单");
-		addImportR=new JButton("制定进货退货单");
+		addImport=new JButton("制定快递接单");
+		addImportR=new JButton("制定快递接退货单");
 		addImportR.setEnabled(false);
 		refresh=new JButton("刷新");
 		panel=new JPanel();
@@ -50,7 +50,7 @@ public class ImportPanel extends JPanel{
 		
 		this.setLayout(new BorderLayout());
 		this.add(panel,BorderLayout.NORTH);
-		//进货单表
+		//快递接单表
 		importtable=new JTable(new TableModel(data, columnTitle){
 			public boolean isCellEditable(int row, int column) {
 				return (false);

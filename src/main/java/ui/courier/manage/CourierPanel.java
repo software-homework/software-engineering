@@ -39,7 +39,7 @@ public class CourierPanel extends JPanel{
 		sbl=new CourierBL();
 		salesmain=sm;
 		
-		addSales=new JButton("制定销售单");
+		addSales=new JButton("制定送货");
 		addSalesR=new JButton("制定销售退货单");
 		addSalesR.setEnabled(false);
 		refresh=new JButton("刷新");

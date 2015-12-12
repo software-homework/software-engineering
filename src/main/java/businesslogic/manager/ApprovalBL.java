@@ -108,7 +108,7 @@ public class ApprovalBL implements ApprovalBLService{
 			temp[count] = salesAL.get(i).id;
 			count++;
 		}
-		//进货类
+		//快递接类
 		for(int i = 0; i < importAL.size(); i++) {
 			temp[count] = importAL.get(i).id;
 			count++;

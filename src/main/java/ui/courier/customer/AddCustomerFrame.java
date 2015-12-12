@@ -128,7 +128,7 @@ public class AddCustomerFrame extends JDialog{
 	               }  
 	           }  
 	       });  
-		userList=getusername.getUsername("进货销售人员");
+		userList=getusername.getUsername("快递接销售人员");
 		userbox=new JComboBox(userList);
 		levelbox=new JComboBox(levelList);
 		typebox=new JComboBox(typeList);

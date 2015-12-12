@@ -78,9 +78,9 @@ public class Show extends JDialog{
 	private String title(String id) {
 		String str = "";
 		switch(id.split("-")[0]) {
-		case "JHD" : str = "进货单";break;
-		case "JHTHD" : str = "进货退货单";break;
-		case "XSD" : str = "销售单";break;
+		case "JHD" : str = "快递接单";break;
+		case "JHTHD" : str = "快递接退货单";break;
+		case "XSD" : str = "送货";break;
 		case "XSTHD" : str = "销售退货单";break;
 		case "SKD" : str = "收款单";break;
 		case "FKD" : str = "付款单";break;
