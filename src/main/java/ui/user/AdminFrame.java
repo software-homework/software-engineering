@@ -69,12 +69,11 @@ public class AdminFrame extends JFrame implements ActionListener {
 		UserBLService userBL = new UserBL();
 		ArrayList<UserVO> data0 = userBL.findUser();
 		String[] column = new String[] { "类型", "用户名", "密码" };
-		String[][] data = new String[data0.size()][4];
+		String[][] data = new String[data0.size()][3];
 		for (int i = 0; i < data0.size(); i++) {
 			data[i][0] = data0.get(i).type;
 			data[i][1] = data0.get(i).name;
 			data[i][2] = data0.get(i).password;
-			data[i][3] = data0.get(i).permission;
 		}
 		this.table = new JTable(data, column);
 		this.js = new JScrollPane(this.table);
@@ -109,12 +108,11 @@ public class AdminFrame extends JFrame implements ActionListener {
 			UserBLService userBL = new UserBL();
 			ArrayList<UserVO> data0 = userBL.findUser();
 			String[] column = new String[] { "类型", "用户名", "密码" };
-			String[][] data = new String[data0.size()][4];
+			String[][] data = new String[data0.size()][3];
 			for (int i = 0; i < data0.size(); i++) {
 				data[i][0] = data0.get(i).type;
 				data[i][1] = data0.get(i).name;
 				data[i][2] = data0.get(i).password;
-				data[i][3] = data0.get(i).permission;
 			}
 			this.table = new JTable(data, column);
 			this.js = new JScrollPane(table);
@@ -131,12 +129,11 @@ public class AdminFrame extends JFrame implements ActionListener {
 			UserBLService userBL = new UserBL();
 			ArrayList<UserVO> data0 = userBL.findUser();
 			String[] column = new String[] { "类型", "用户名", "密码" };
-			String[][] data = new String[data0.size()][4];
+			String[][] data = new String[data0.size()][3];
 			for (int i = 0; i < data0.size(); i++) {
 				data[i][0] = data0.get(i).type;
 				data[i][1] = data0.get(i).name;
 				data[i][2] = data0.get(i).password;
-				data[i][3] = data0.get(i).permission;
 			}
 			this.table = new JTable(data, column);
 			this.js = new JScrollPane(table);
@@ -149,25 +146,16 @@ public class AdminFrame extends JFrame implements ActionListener {
 
 			ArrayList<UserVO> newUser = new ArrayList<UserVO>();
 			for (int i = 0; i < table.getRowCount(); i++) {
-				if (((String) this.table.getValueAt(i, 0)).equals("总经理")
-						&& !(((String) this.table.getValueAt(i, 3)).equals("经理"))) {
-					JOptionPane.showMessageDialog(null, "总经理应为最高权限!", null, 0);
-					break;
-				} else if (!(((String) this.table.getValueAt(i, 0)).equals("总经理")
+				if (!(((String) this.table.getValueAt(i, 0)).equals("总经理")
 						|| ((String) this.table.getValueAt(i, 0)).equals("财务人员")
 						|| ((String) this.table.getValueAt(i, 0)).equals("管理员")
 						|| ((String) this.table.getValueAt(i, 0)).equals("物流人员")
 						|| ((String) this.table.getValueAt(i, 0)).equals("进货销售人员"))) {
 					JOptionPane.showMessageDialog(null, "存在非法用户类型!", null, 0);
 					break;
-				} else if (!(((String) this.table.getValueAt(i, 3)).equals("经理")
-						|| ((String) this.table.getValueAt(i, 3)).equals("空")
-						|| ((String) this.table.getValueAt(i, 3)).equals("普通职员"))) {
-					JOptionPane.showMessageDialog(null, "存在非法用户权限!", null, 0);
-					break;
 				} else {
 					newUser.add(new UserVO((String) this.table.getValueAt(i, 0), (String) this.table.getValueAt(i, 1),
-							(String) this.table.getValueAt(i, 2), (String) this.table.getValueAt(i, 3)));
+							(String) this.table.getValueAt(i, 2)));
 					if (i == table.getRowCount() - 1) {
 						for (int j = 0; j < table.getRowCount(); j++)
 							userBL.updateUser(old.get(j), newUser.get(j));
@@ -179,12 +167,11 @@ public class AdminFrame extends JFrame implements ActionListener {
 						this.remove(this.js);
 						ArrayList<UserVO> data0 = userBL.findUser();
 						String[] column = new String[] { "类型", "用户名", "密码" };
-						String[][] data = new String[data0.size()][4];
+						String[][] data = new String[data0.size()][3];
 						for (int k = 0; k < data0.size(); k++) {
 							data[k][0] = data0.get(k).type;
 							data[k][1] = data0.get(k).name;
 							data[k][2] = data0.get(k).password;
-							data[k][3] = data0.get(k).permission;
 						}
 						this.table = new JTable(data, column);
 						this.js = new JScrollPane(table);
@@ -203,7 +190,7 @@ public class AdminFrame extends JFrame implements ActionListener {
 				UserVO user;
 				for (int i = 0; i < n.length; i++) {
 					user = new UserVO((String) this.table.getValueAt(n[i], 0), (String) this.table.getValueAt(n[i], 1),
-							(String) this.table.getValueAt(n[i], 2), (String) this.table.getValueAt(n[i], 3));
+							(String) this.table.getValueAt(n[i], 2));
 					userBL.deleteUser(user);
 				}
 				// 日志
@@ -213,12 +200,11 @@ public class AdminFrame extends JFrame implements ActionListener {
 				this.remove(this.js);
 				ArrayList<UserVO> data0 = userBL.findUser();
 				String[] column = new String[] { "类型", "用户名", "密码" };
-				String[][] data = new String[data0.size()][4];
+				String[][] data = new String[data0.size()][3];
 				for (int i = 0; i < data0.size(); i++) {
 					data[i][0] = data0.get(i).type;
 					data[i][1] = data0.get(i).name;
 					data[i][2] = data0.get(i).password;
-					data[i][3] = data0.get(i).permission;
 				}
 				this.table = new JTable(data, column);
 				this.js = new JScrollPane(table);

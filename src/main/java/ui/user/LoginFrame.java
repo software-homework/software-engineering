@@ -133,7 +133,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "输入信息不能为空!", null, 0);
 			} else {
 				UserVO userVO = new UserVO(((String) typeBC.getSelectedItem()), nameTF.getText().trim(),
-						String.copyValueOf(jPasswordField.getPassword()), "");
+						String.copyValueOf(jPasswordField.getPassword()));
 				boolean isSuccess = ubs.login(userVO);
 
 				if (isSuccess) {
