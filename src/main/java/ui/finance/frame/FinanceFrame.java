@@ -165,7 +165,7 @@ public class FinanceFrame extends JFrame implements ActionListener, MouseListene
 	JLabel statusBar;
 
 	public JToolBar createStatusBar() {
-		this.statusBar = new JLabel("欢迎登入进销存系统!");
+		this.statusBar = new JLabel("欢迎登入逆风快递系统!");
 		JToolBar toolBar = new JToolBar();
 		toolBar.add(statusBar);
 		toolBar.setFloatable(false);

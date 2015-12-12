@@ -50,14 +50,14 @@ public class AccountManagePanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == this.jButton[0]) // 添加
 		{
-			if (this.userVO.name.equals("admin")) {
+			if (this.userVO.type.equals("总经理")) {
 				AddAccountDialog addAccountDialog = new AddAccountDialog(this.jFrame, "添加账户", true);
 			} else {
 				JOptionPane.showMessageDialog(null, "无此权限!", null, 0);
 			}
 		} else if (arg0.getSource() == this.jButton[1]) // 删除
 		{
-			if (this.userVO.name.equals("admin")) {
+			if (this.userVO.type.equals("总经理")) {
 				int[] rows = this.jFrame.getTable().getSelectedRows();
 
 				if (rows.length == 0) {
@@ -84,7 +84,7 @@ public class AccountManagePanel extends JPanel implements ActionListener {
 			}
 		} else if (arg0.getSource() == this.jButton[2]) // 更新
 		{
-			if (this.userVO.name.equals("admin")) {
+			if (this.userVO.type.equals("总经理")) {
 				UpdateAccountDialog updateAccountDialog = new UpdateAccountDialog(this.jFrame, "更新账户", true,
 						this.userVO);
 			} else {
@@ -92,7 +92,7 @@ public class AccountManagePanel extends JPanel implements ActionListener {
 			}
 		} else if (arg0.getSource() == this.jButton[3]) // 查找
 		{
-			if (this.userVO.name.equals("admin")) {
+			if (this.userVO.type.equals("总经理")) {
 				FindAccountDialog findAccountDialog = new FindAccountDialog(this.jFrame, "查找账户", true, this.userVO);
 			} else {
 				JOptionPane.showMessageDialog(null, "无此权限!", null, 0);

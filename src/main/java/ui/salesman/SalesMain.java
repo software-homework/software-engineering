@@ -60,7 +60,7 @@ public class SalesMain extends JFrame {
 				frameHeight);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
-		this.setTitle("进销存系统-销售管理人员" + "    " + "账户名: " + uservo.name);
+		this.setTitle("逆风快递系统-销售管理人员" + "    " + "账户名: " + uservo.name);
 
 		// 菜单定义
 		mb = new JMenuBar();

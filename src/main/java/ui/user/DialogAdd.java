@@ -28,7 +28,6 @@ public class DialogAdd extends JDialog implements ActionListener {
 	JComboBox<String> typeBC;
 	JTextField nameTF;
 	JPasswordField jPasswordField;
-	JComboBox<String> permissionBC;
 
 	int width;
 	int height;
@@ -53,14 +52,13 @@ public class DialogAdd extends JDialog implements ActionListener {
 		jl[0] = new JLabel("类  型:");
 		jl[1] = new JLabel("用户名:");
 		jl[2] = new JLabel("密  码:");
-		jl[3] = new JLabel("权  限:");
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 			jl[i].setSize(widthLabel, heightLabel);
 			jl[i].setLocation((width - 250) / 2, (i + 1) * (heightLabel + 10));
 			this.add(jl[i]);
 		}
 		// -------------------------------------------------------------------------
-		String[] s1 = { "物流人员", "进货销售人员", "财务人员", "总经理" };
+		String[] s1 = { "物流人员", "快递员", "财务人员", "总经理" };
 		typeBC = new JComboBox<String>(s1);
 		typeBC.setSize(widthText, heightText);
 		typeBC.setLocation((width - 250) / 2 + 100, 1 * (heightLabel + 10));
@@ -76,12 +74,6 @@ public class DialogAdd extends JDialog implements ActionListener {
 		jPasswordField.setSize(widthText, heightText);
 		jPasswordField.setLocation((width - 250) / 2 + 100, 3 * (heightLabel + 10));
 		this.getContentPane().add(jPasswordField);
-
-		String[] s2 = { "经理", "普通职员" };
-		permissionBC = new JComboBox<String>(s2);
-		permissionBC.setSize(widthText, heightText);
-		permissionBC.setLocation((width - 250) / 2 + 100, 4 * (heightLabel + 10));
-		this.add(permissionBC);
 
 		// ---------------------------------------------------------------------------
 		confirm = new JButton("确定");
@@ -118,12 +110,6 @@ public class DialogAdd extends JDialog implements ActionListener {
 
 				this.dispose();
 			}
-		} else if (arg0.getSource() == typeBC) {
-			if (((String) typeBC.getSelectedItem()).equals("总经理")) {
-				this.permissionBC.setSelectedIndex(0);
-				this.permissionBC.setEnabled(false);
-			} else
-				this.permissionBC.setEnabled(true);
 		} else if (arg0.getSource() == cancel)
 			this.dispose();
 	}

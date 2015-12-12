@@ -70,7 +70,7 @@ public class ManagerFrame extends JFrame{
 		int frameWidth = frameHeight * 7 / 4;
 		this.setBounds((screenSize.width - frameWidth) / 2, (screenSize.height - frameHeight) / 2, frameWidth, frameHeight);
 		//设置状态栏
-		statusBar = new JLabel("欢迎使用进销存系统！");
+		statusBar = new JLabel("欢迎使用逆风快递系统！");
 		toolBar = new JToolBar();
 		toolBar.add(statusBar);
 		toolBar.setFloatable(false);
@@ -120,7 +120,7 @@ public class ManagerFrame extends JFrame{
 		
 		this.getContentPane().add(splitPane, BorderLayout.CENTER);
 		//---------------------------------------------------------------
-		this.setTitle("进销存系统-总经理");
+		this.setTitle("逆风快递系统-总经理");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		splitPane.setDividerLocation(0.2);//设置分隔窗口大小
