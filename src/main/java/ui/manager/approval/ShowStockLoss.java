@@ -10,9 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import vo.stockManage.StockLossVO;
 import businesslogic.manager.ApprovalBL;
 import businesslogicservice.manager.ApprovalBLService;
+import vo.logistics.LogisticsLossVO;
 
 /**
  * 
@@ -28,7 +28,7 @@ import businesslogicservice.manager.ApprovalBLService;
 @SuppressWarnings("serial")
 public class ShowStockLoss extends ShowApproval{
 	private ApprovalBLService bl;
-	private StockLossVO vo;
+	private LogisticsLossVO vo;
 	//---------------------------------------------------------------
 	public ShowStockLoss(ApprovalPane pane, String id) {
 		super(pane, id);

@@ -2,7 +2,7 @@ package businesslogicservice.manager;
 
 import java.util.ArrayList;
 
-import vo.stockManage.PresentVO;
+import vo.logistics.PresentVO;
 
 /**
  * 

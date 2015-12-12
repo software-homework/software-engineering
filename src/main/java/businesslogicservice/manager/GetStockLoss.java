@@ -2,7 +2,7 @@ package businesslogicservice.manager;
 
 import java.util.ArrayList;
 
-import vo.stockManage.StockLossVO;
+import vo.logistics.LogisticsLossVO;
 
 /**
  * 
@@ -17,6 +17,6 @@ import vo.stockManage.StockLossVO;
  */
 public interface GetStockLoss {
 	public boolean approvalStockLoss(String id, int approval);
-	public ArrayList<StockLossVO> getUncheckedStockLoss();
-	public ArrayList<StockLossVO> getCheckedStockLoss();
+	public ArrayList<LogisticsLossVO> getUncheckedStockLoss();
+	public ArrayList<LogisticsLossVO> getCheckedStockLoss();
 }

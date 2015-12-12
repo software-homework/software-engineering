@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import vo.stockManage.PresentVO;
+import vo.logistics.PresentVO;
 
 @SuppressWarnings("serial")
 public class ShowPresent extends JDialog{

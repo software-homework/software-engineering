@@ -18,11 +18,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import vo.LogVO;
+import vo.courier.CustomerVO;
 import vo.finance.AccountVO;
-import vo.salesman.CustomerVO;
 import businesslogic.LogBL;
+import businesslogic.courier.CustomerBL;
 import businesslogic.finance.AccountBL;
-import businesslogic.salesman.CustomerBL;
 import businesslogicservice.LogBLService;
 import businesslogicservice.finance.AccountBLService;
 import businesslogicservice.finance.GetCustomerBL;

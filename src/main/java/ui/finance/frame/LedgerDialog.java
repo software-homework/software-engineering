@@ -13,9 +13,9 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 
 import vo.finance.LedgerVO;
-import vo.stockManage.StockVO;
+import vo.logistics.LogisticsVO;
 import businesslogic.finance.AccountBL;
-import businesslogic.stockManage.CommodityBL;
+import businesslogic.logistics.CommodityBL;
 import businesslogicservice.finance.AccountBLService;
 import businesslogicservice.finance.GetCommodityBL;
 
@@ -68,7 +68,7 @@ public class LedgerDialog extends JDialog{
 		GetCommodityBL getCommodityBL = new CommodityBL();
 		AccountBLService accountBL = new AccountBL();
 		ArrayList<LedgerVO> ledgerVOs = accountBL.showLedger();
-		ArrayList<StockVO> stockVOs = new ArrayList<StockVO>();
+		ArrayList<LogisticsVO> stockVOs = new ArrayList<LogisticsVO>();
 	
 		int index = 0;
 		for(int i = 0; i < ledgerVOs.size(); i++){

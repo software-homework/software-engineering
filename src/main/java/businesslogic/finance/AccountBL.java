@@ -7,12 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import businesslogic.salesman.CustomerBL;
-import businesslogic.salesman.ImportBL;
-import businesslogic.salesman.SalesBL;
-import businesslogic.stockManage.PresentBL;
-import businesslogic.stockManage.StockLossBL;
-import businesslogic.stockManage.StockOverflowBL;
+import businesslogic.courier.CustomerBL;
+import businesslogic.courier.ImportBL;
+import businesslogic.courier.CourierBL;
+import businesslogic.logistics.PresentBL;
+import businesslogic.logistics.LogisticsLossBL;
+import businesslogic.logistics.LogisticsOverflowBL;
 import businesslogicservice.finance.AccountBLService;
 import businesslogicservice.finance.GetCustomerBL;
 import businesslogicservice.finance.GetImportBL;
@@ -26,17 +26,17 @@ import po.finance.AccountPO;
 import po.finance.CashExpensesPO;
 import po.finance.DocumentPO;
 import po.finance.LedgerPO;
+import vo.courier.CustomerVO;
+import vo.courier.ImportVO;
+import vo.courier.CourierVO;
 import vo.finance.AccountVO;
 import vo.finance.CashExpensesVO;
 import vo.finance.DocumentVO;
 import vo.finance.LedgerVO;
-import vo.salesman.CustomerVO;
-import vo.salesman.ImportVO;
-import vo.salesman.SalesVO;
-import vo.stockManage.CommodityVO;
-import vo.stockManage.PresentVO;
-import vo.stockManage.StockLossVO;
-import vo.stockManage.StockOverflowVO;
+import vo.logistics.CommodityVO;
+import vo.logistics.PresentVO;
+import vo.logistics.LogisticsLossVO;
+import vo.logistics.LogisticsOverflowVO;
 
 public class AccountBL implements AccountBLService, businesslogicservice.manager.GetDocument
 {
@@ -217,8 +217,8 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 	 ********************************************************************/
 	public String[][] showDetail(String time1, String time2, String notDecided,
 			String customer, String operator) {
-		GetSalesBL getSalesBL = new SalesBL();
-		ArrayList<SalesVO> list = getSalesBL.getCheckedSales();
+		GetSalesBL getSalesBL = new CourierBL();
+		ArrayList<CourierVO> list = getSalesBL.getCheckedSales();
 		ArrayList<String> temp = new ArrayList<String>();
 		//除去退货单
 		for(int i = 0; i < list.size(); i++){
@@ -267,16 +267,16 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 	/********************************************************************
 	 ********************************************************************/
 	public String[][] showHistory(String time1, String time2, String billtype, String customer, String operator) {
-		GetSalesBL getSalesBL = new SalesBL();
+		GetSalesBL getSalesBL = new CourierBL();
 		GetImportBL getImportBL = new ImportBL();
-		GetStockBL getStockLoss = new StockLossBL();
-		GetStockBL getStockOverFlow = new StockOverflowBL();
+		GetStockBL getStockLoss = new LogisticsLossBL();
+		GetStockBL getStockOverFlow = new LogisticsOverflowBL();
 		GetStockBL getStockPresent = new PresentBL();
 		
-		ArrayList<StockLossVO> stockLoss = new ArrayList<StockLossVO>();
-		ArrayList<StockOverflowVO> stockOverFlow = new ArrayList<StockOverflowVO>();
+		ArrayList<LogisticsLossVO> stockLoss = new ArrayList<LogisticsLossVO>();
+		ArrayList<LogisticsOverflowVO> stockOverFlow = new ArrayList<LogisticsOverflowVO>();
 		ArrayList<PresentVO> stockPresent = new ArrayList<PresentVO>();
-		ArrayList<SalesVO> sales = new ArrayList<SalesVO>();
+		ArrayList<CourierVO> sales = new ArrayList<CourierVO>();
 		ArrayList<ImportVO> imports = new ArrayList<ImportVO>();
 		ArrayList<DocumentVO> documents = this.filterDocuments(new String[]{time1, time2}, null, customer, operator, 1);
 		ArrayList<CashExpensesVO> cashExpenses = this.filterCashExpenses(new String[]{time1,time2}, operator);
@@ -360,9 +360,9 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 	}
 	/********************************************************************
 	 ********************************************************************/
-	public boolean red(ImportVO importVO, SalesVO salesVO) {
+	public boolean red(ImportVO importVO, CourierVO salesVO) {
 		GetImportBL getImportBL = new ImportBL();
-		GetSalesBL getSalesBL = new SalesBL();
+		GetSalesBL getSalesBL = new CourierBL();
 		if(importVO != null){
 			if(importVO.id.split("-")[0].equals("JHD"))
 				importVO.id = getImportBL.getiID();
@@ -388,9 +388,9 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 
 	/********************************************************************
 	 ********************************************************************/
-	public boolean copy(ImportVO importVO, SalesVO salesVO) {
+	public boolean copy(ImportVO importVO, CourierVO salesVO) {
 		GetImportBL getImportBL = new ImportBL();
-		GetSalesBL getSalesBL = new SalesBL();
+		GetSalesBL getSalesBL = new CourierBL();
 		if(importVO != null){
 			if(importVO.id.split("-")[0].equals("JHD"))
 				importVO.id = getImportBL.getiID();
@@ -481,10 +481,10 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 		return res;
 	}
 	
-	public SalesVO findOneSales(String id){
-		GetSalesBL getSalesBL = new SalesBL();
-		ArrayList<SalesVO> list = new ArrayList<SalesVO>(getSalesBL.getCheckedSales());
-		SalesVO res = null;
+	public CourierVO findOneSales(String id){
+		GetSalesBL getSalesBL = new CourierBL();
+		ArrayList<CourierVO> list = new ArrayList<CourierVO>(getSalesBL.getCheckedSales());
+		CourierVO res = null;
 		for(int i = 0; i < list.size(); i++){
 			res = list.get(i);
 			if(res.id.equals(id)){
@@ -494,10 +494,10 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 		return res;
 	}
 
-	public StockOverflowVO findOneStockOverflow(String id) {
-		GetStockBL getStockOverFlow = new StockOverflowBL();
-		ArrayList<StockOverflowVO> list = new ArrayList<StockOverflowVO>(getStockOverFlow.getCheckedStockOverflow());
-		StockOverflowVO res = null;
+	public LogisticsOverflowVO findOneStockOverflow(String id) {
+		GetStockBL getStockOverFlow = new LogisticsOverflowBL();
+		ArrayList<LogisticsOverflowVO> list = new ArrayList<LogisticsOverflowVO>(getStockOverFlow.getCheckedStockOverflow());
+		LogisticsOverflowVO res = null;
 		for(int i = 0; i < list.size(); i++){
 			res = list.get(i);
 			if(res.id.equals(id)){
@@ -507,10 +507,10 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 		return res;	
 	}
 
-	public StockLossVO findOneStockLoss(String id) {
-		GetStockBL getStockLoss = new StockLossBL();
-		ArrayList<StockLossVO> list = new ArrayList<StockLossVO>(getStockLoss.getCheckedStockLoss());
-		StockLossVO res = null;
+	public LogisticsLossVO findOneStockLoss(String id) {
+		GetStockBL getStockLoss = new LogisticsLossBL();
+		ArrayList<LogisticsLossVO> list = new ArrayList<LogisticsLossVO>(getStockLoss.getCheckedStockLoss());
+		LogisticsLossVO res = null;
 		for(int i = 0; i < list.size(); i++){
 			res = list.get(i);
 			if(res.id.equals(id)){

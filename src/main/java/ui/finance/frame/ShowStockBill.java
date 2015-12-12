@@ -7,21 +7,21 @@ import java.awt.Toolkit;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
-import vo.stockManage.StockLossVO;
-import vo.stockManage.StockOverflowVO;
+import vo.logistics.LogisticsLossVO;
+import vo.logistics.LogisticsOverflowVO;
 
 @SuppressWarnings("serial")
 public class ShowStockBill extends JDialog{
 	
 	FinanceFrame jFrame;
-	StockLossVO stockLossVO;
-	StockOverflowVO stockOverflowVO;
+	LogisticsLossVO stockLossVO;
+	LogisticsOverflowVO stockOverflowVO;
 	int frameHeight = 400;
 	int frameWidth = 400;
 	JLabel[] jl = new JLabel[4];
 	JLabel[] jl2 = new JLabel[4];
 	
-	public ShowStockBill(FinanceFrame jFrame, String title, boolean modal, StockLossVO stockLossVO, StockOverflowVO stockOverflowVO) {
+	public ShowStockBill(FinanceFrame jFrame, String title, boolean modal, LogisticsLossVO stockLossVO, LogisticsOverflowVO stockOverflowVO) {
 		super(jFrame, title, modal);
 		this.jFrame = jFrame;
 		this.stockLossVO = stockLossVO;

@@ -2,8 +2,8 @@ package businesslogicservice.finance;
 
 import java.util.ArrayList;
 
-import vo.stockManage.StockVO;
+import vo.logistics.LogisticsVO;
 
 public interface GetCommodityBL {
-	public ArrayList<StockVO> merge(String start,String end);
+	public ArrayList<LogisticsVO> merge(String start,String end);
 }

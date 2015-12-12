@@ -11,18 +11,18 @@ import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
-import vo.salesman.ImportVO;
-import vo.salesman.SalesVO;
-import vo.stockManage.CommodityVO;
-import vo.stockManage.PresentVO;
-import vo.stockManage.StockLossVO;
-import vo.stockManage.StockOverflowVO;
-import businesslogic.salesman.ImportBL;
-import businesslogic.salesman.SalesBL;
-import businesslogic.stockManage.CommodityBL;
-import businesslogic.stockManage.PresentBL;
-import businesslogic.stockManage.StockLossBL;
-import businesslogic.stockManage.StockOverflowBL;
+import vo.courier.ImportVO;
+import vo.courier.CourierVO;
+import vo.logistics.CommodityVO;
+import vo.logistics.PresentVO;
+import vo.logistics.LogisticsLossVO;
+import vo.logistics.LogisticsOverflowVO;
+import businesslogic.courier.ImportBL;
+import businesslogic.courier.CourierBL;
+import businesslogic.logistics.CommodityBL;
+import businesslogic.logistics.PresentBL;
+import businesslogic.logistics.LogisticsLossBL;
+import businesslogic.logistics.LogisticsOverflowBL;
 import businesslogicservice.finance.GetCheckBL;
 import businesslogicservice.manager.CheckBLService;
 import businesslogicservice.manager.GetCommodity;
@@ -53,16 +53,16 @@ public class CheckBL implements CheckBLService, GetCheckBL{
 	public Object[][] showCondition(String[] str) {
 		Object[][] temp = new Object[1][8];
 		GetImport getImport = new ImportBL();
-		GetSales getSales = new SalesBL();
-		GetStockLoss getStockLoss = new StockLossBL();
-		GetStockOverflow getStockOverflow = new StockOverflowBL();
+		GetSales getSales = new CourierBL();
+		GetStockLoss getStockLoss = new LogisticsLossBL();
+		GetStockOverflow getStockOverflow = new LogisticsOverflowBL();
 		GetPresent getPresent = new PresentBL();
 		GetCommodity getCommodity = new CommodityBL();
 		
 		ArrayList<ImportVO> importAL = new ArrayList<ImportVO>();
-		ArrayList<SalesVO> salesAL = new ArrayList<SalesVO>();
-		ArrayList<StockLossVO> stockLossAL = new ArrayList<StockLossVO>();
-		ArrayList<StockOverflowVO> stockOverflowAL = new ArrayList<StockOverflowVO>();
+		ArrayList<CourierVO> salesAL = new ArrayList<CourierVO>();
+		ArrayList<LogisticsLossVO> stockLossAL = new ArrayList<LogisticsLossVO>();
+		ArrayList<LogisticsOverflowVO> stockOverflowAL = new ArrayList<LogisticsOverflowVO>();
 		ArrayList<PresentVO> presentAL = new ArrayList<PresentVO>();
 		ArrayList<CommodityVO> commodityAL = new ArrayList<CommodityVO>();
 
@@ -74,7 +74,7 @@ public class CheckBL implements CheckBLService, GetCheckBL{
 		commodityAL = getCommodity.getCommodity();
 		//销售收入
 		double money = 0;
-		for(SalesVO i : salesAL) {
+		for(CourierVO i : salesAL) {
 			String[] date = i.id.split("-");
 			try {
 				if((sdf.parse(str[0]).compareTo(sdf.parse(date[1])) <= 0) && (sdf.parse(date[1]).compareTo(sdf.parse(str[1])) <= 0)) {
@@ -90,7 +90,7 @@ public class CheckBL implements CheckBLService, GetCheckBL{
 		temp[0][0] = money;
 		//商品类收入
 		money = 0;
-		for (StockOverflowVO i : stockOverflowAL) {
+		for (LogisticsOverflowVO i : stockOverflowAL) {
 			String[] date = i.id.split("-");
 			try {
 				if((sdf.parse(str[0]).compareTo(sdf.parse(date[1])) <= 0) && (sdf.parse(date[1]).compareTo(sdf.parse(str[1])) <= 0)) {
@@ -106,7 +106,7 @@ public class CheckBL implements CheckBLService, GetCheckBL{
 		temp[0][1] = money;
 		//折让
 		money = 0;
-		for (SalesVO i :salesAL) {
+		for (CourierVO i :salesAL) {
 			String[] date = i.id.split("-");
 			try {
 				if((sdf.parse(str[0]).compareTo(sdf.parse(date[1])) <= 0) && (sdf.parse(date[1]).compareTo(sdf.parse(str[1])) <= 0)) {
@@ -143,7 +143,7 @@ public class CheckBL implements CheckBLService, GetCheckBL{
 		//商品类支出
 		money = 0;
 		//报损
-		for (StockLossVO i : stockLossAL) {
+		for (LogisticsLossVO i : stockLossAL) {
 			String[] date = i.id.split("-");
 			try {
 				if((sdf.parse(str[0]).compareTo(sdf.parse(date[1])) <= 0) && (sdf.parse(date[1]).compareTo(sdf.parse(str[1])) <= 0)) {

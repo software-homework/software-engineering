@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import ui.TableModel;
-import vo.salesman.SalesVO;
+import vo.courier.CourierVO;
 import businesslogic.finance.AccountBL;
 import businesslogicservice.manager.GetDocument;
 
@@ -31,7 +31,7 @@ import businesslogicservice.manager.GetDocument;
 @SuppressWarnings("serial")
 public class ShowSal extends Show{
 	private GetDocument get;
-	private SalesVO vo;
+	private CourierVO vo;
 	//------------------------------------------------------------------
 	public ShowSal(String id) {
 		super(id);

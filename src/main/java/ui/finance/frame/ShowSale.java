@@ -18,11 +18,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import vo.LogVO;
-import vo.salesman.SalesVO;
-import vo.stockManage.CommodityVO;
+import vo.courier.CourierVO;
+import vo.logistics.CommodityVO;
 import businesslogic.LogBL;
+import businesslogic.courier.CourierBL;
 import businesslogic.finance.AccountBL;
-import businesslogic.salesman.SalesBL;
 import businesslogicservice.LogBLService;
 import businesslogicservice.finance.AccountBLService;
 import businesslogicservice.finance.GetSalesBL;
@@ -30,7 +30,7 @@ import businesslogicservice.finance.GetSalesBL;
 @SuppressWarnings("serial")
 public class ShowSale  extends JDialog implements ActionListener{
 	FinanceFrame jFrame;
-	SalesVO salesVO;
+	CourierVO salesVO;
 	int frameHeight = 520;
 	int frameWidth = 400;
 	
@@ -43,7 +43,7 @@ public class ShowSale  extends JDialog implements ActionListener{
 	JLabel top;
 	JButton red = new JButton("红冲");
 	JButton	redAndCopy = new JButton("红冲并复制");		
-	public ShowSale(FinanceFrame jFrame, String title, boolean modal, SalesVO salesVO) {
+	public ShowSale(FinanceFrame jFrame, String title, boolean modal, CourierVO salesVO) {
 		super(jFrame, title, modal);
 		//获取
 		this.jFrame = jFrame;
@@ -111,7 +111,7 @@ public class ShowSale  extends JDialog implements ActionListener{
                     JOptionPane.YES_NO_OPTION);
 			if(n == 0){
 				/*******/
-				GetSalesBL getSalesBL = new SalesBL();
+				GetSalesBL getSalesBL = new CourierBL();
 				getSalesBL.approvalSales(this.salesVO.id, 2);
 				/*****数量取负**/
 				ArrayList<CommodityVO> salesList = this.salesVO.salesList;
@@ -137,7 +137,7 @@ public class ShowSale  extends JDialog implements ActionListener{
                     JOptionPane.YES_NO_OPTION);
 			if(n == 0){
 				/*******/
-				GetSalesBL getSalesBL = new SalesBL();
+				GetSalesBL getSalesBL = new CourierBL();
 				getSalesBL.approvalSales(this.salesVO.id, 2);
 				/*****红冲**/
 				ArrayList<CommodityVO> salesList = this.salesVO.salesList;

@@ -2,7 +2,7 @@ package businesslogicservice.manager;
 
 import java.util.ArrayList;
 
-import vo.stockManage.StockOverflowVO;
+import vo.logistics.LogisticsOverflowVO;
 
 /**
  * 
@@ -17,6 +17,6 @@ import vo.stockManage.StockOverflowVO;
  */
 public interface GetStockOverflow {
 	public boolean approvalStockOverflow(String id, int approval);
-	public ArrayList<StockOverflowVO> getUncheckedStockOverflow();
-	public ArrayList<StockOverflowVO> getCheckedStockOverflow();
+	public ArrayList<LogisticsOverflowVO> getUncheckedStockOverflow();
+	public ArrayList<LogisticsOverflowVO> getCheckedStockOverflow();
 }

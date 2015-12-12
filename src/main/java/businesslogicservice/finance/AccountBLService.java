@@ -2,15 +2,15 @@ package businesslogicservice.finance;
 
 import java.util.ArrayList;
 
+import vo.courier.ImportVO;
+import vo.courier.CourierVO;
 import vo.finance.AccountVO;
 import vo.finance.CashExpensesVO;
 import vo.finance.DocumentVO;
 import vo.finance.LedgerVO;
-import vo.salesman.ImportVO;
-import vo.salesman.SalesVO;
-import vo.stockManage.PresentVO;
-import vo.stockManage.StockLossVO;
-import vo.stockManage.StockOverflowVO;
+import vo.logistics.PresentVO;
+import vo.logistics.LogisticsLossVO;
+import vo.logistics.LogisticsOverflowVO;
 import exception.ExistPO;
 import exception.NotFoundPO;
 
@@ -49,8 +49,8 @@ public interface AccountBLService
 	public String[][] showHistory(String time1, String time2, String billtype, 
 			String customer, String operator);
 	public boolean output(String[][] res);
-	public boolean red(ImportVO importVO, SalesVO salesVO);
-	public boolean copy(ImportVO importVO, SalesVO salesVO);
+	public boolean red(ImportVO importVO, CourierVO salesVO);
+	public boolean copy(ImportVO importVO, CourierVO salesVO);
 	/**
 	 * 
 	 */
@@ -61,8 +61,8 @@ public interface AccountBLService
 	public DocumentVO findOneDocument(String id);
 	public CashExpensesVO findOneCashExpenses(String id);
 	public ImportVO findOneImport(String id);
-	public SalesVO findOneSales(String id);
-	public StockOverflowVO findOneStockOverflow(String id);
-	public StockLossVO findOneStockLoss(String id);
+	public CourierVO findOneSales(String id);
+	public LogisticsOverflowVO findOneStockOverflow(String id);
+	public LogisticsLossVO findOneStockLoss(String id);
 	public PresentVO findOnePresent(String id);
 }

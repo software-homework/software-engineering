@@ -2,13 +2,13 @@ package businesslogicservice.manager;
 
 import java.util.ArrayList;
 
+import vo.courier.ImportVO;
+import vo.courier.CourierVO;
 import vo.finance.CashExpensesVO;
 import vo.finance.DocumentVO;
-import vo.salesman.ImportVO;
-import vo.salesman.SalesVO;
-import vo.stockManage.PresentVO;
-import vo.stockManage.StockLossVO;
-import vo.stockManage.StockOverflowVO;
+import vo.logistics.PresentVO;
+import vo.logistics.LogisticsLossVO;
+import vo.logistics.LogisticsOverflowVO;
 
 /**
  * 
@@ -29,10 +29,10 @@ public interface GetDocument {
 	public boolean updateCashExpenses(String id, int approval);
 	public ArrayList<CashExpensesVO> getUncheckedCashExpenses();
 	public ImportVO findOneImport(String id);
-	public SalesVO findOneSales(String id);
+	public CourierVO findOneSales(String id);
 	public DocumentVO findOneDocument(String id);
-	public StockLossVO findOneStockLoss(String id);
-	public StockOverflowVO findOneStockOverflow(String id);
+	public LogisticsLossVO findOneStockLoss(String id);
+	public LogisticsOverflowVO findOneStockOverflow(String id);
 	public PresentVO findOnePresent(String id);
 	public CashExpensesVO findOneCashExpenses(String id);
 }

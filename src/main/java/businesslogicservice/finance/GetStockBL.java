@@ -2,12 +2,12 @@ package businesslogicservice.finance;
 
 import java.util.ArrayList;
 
-import vo.stockManage.PresentVO;
-import vo.stockManage.StockLossVO;
-import vo.stockManage.StockOverflowVO;
+import vo.logistics.PresentVO;
+import vo.logistics.LogisticsLossVO;
+import vo.logistics.LogisticsOverflowVO;
 
 public interface GetStockBL {
-	public ArrayList<StockLossVO> getCheckedStockLoss();
-	public ArrayList<StockOverflowVO> getCheckedStockOverflow();
+	public ArrayList<LogisticsLossVO> getCheckedStockLoss();
+	public ArrayList<LogisticsOverflowVO> getCheckedStockOverflow();
 	public ArrayList<PresentVO> getCheckedPresent();
 }

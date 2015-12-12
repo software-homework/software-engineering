@@ -1,7 +1,8 @@
 package businesslogicservice.finance;
 
 import java.util.ArrayList;
-import vo.salesman.CustomerVO;
+
+import vo.courier.CustomerVO;
 
 public interface GetCustomerBL{
 	public boolean updateCustomer(String name,double newProceed,double newPay);

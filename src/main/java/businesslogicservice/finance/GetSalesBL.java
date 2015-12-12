@@ -2,14 +2,14 @@ package businesslogicservice.finance;
 
 import java.util.ArrayList;
 
-import vo.salesman.SalesVO;
+import vo.courier.CourierVO;
 
 public interface GetSalesBL 
 {
-	public ArrayList<SalesVO> getCheckedSales();
+	public ArrayList<CourierVO> getCheckedSales();
 	
 	public String getsID();
 	public String getsrID();
-	public boolean CheckS(SalesVO svo);
+	public boolean CheckS(CourierVO svo);
 	public boolean approvalSales(String id,int approval);
 }

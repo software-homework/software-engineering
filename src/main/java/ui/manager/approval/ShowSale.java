@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 import ui.TableModel;
 import vo.LogVO;
-import vo.salesman.SalesVO;
+import vo.courier.CourierVO;
 import businesslogic.LogBL;
 import businesslogic.manager.ApprovalBL;
 import businesslogicservice.LogBLService;
@@ -35,7 +35,7 @@ import businesslogicservice.manager.ApprovalBLService;
 @SuppressWarnings("serial")
 public class ShowSale extends ShowApproval{
 	private ApprovalBLService bl;
-	private SalesVO vo;
+	private CourierVO vo;
 	//---------------------------------------------------------------------------------
 	public ShowSale(ApprovalPane pane, String id) {
 		super(pane, id);

@@ -19,11 +19,11 @@ import javax.swing.JTextField;
 
 import ui.TableModel;
 import vo.LogVO;
+import vo.logistics.CommodityVO;
 import vo.manager.CustPromVO;
-import vo.stockManage.CommodityVO;
 import businesslogic.LogBL;
+import businesslogic.logistics.CommodityBL;
 import businesslogic.manager.PromotionBL;
-import businesslogic.stockManage.CommodityBL;
 import businesslogicservice.LogBLService;
 import businesslogicservice.manager.GetCommodity;
 import businesslogicservice.manager.PromotionBLService;

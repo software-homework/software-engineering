@@ -2,7 +2,7 @@ package businesslogicservice.manager;
 
 import java.util.*;
 
-import vo.salesman.*;
+import vo.courier.*;
 
 /**
  * 

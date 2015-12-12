@@ -2,7 +2,7 @@ package businesslogicservice.manager;
 
 import java.util.*;
 
-import vo.salesman.*;
+import vo.courier.*;
 
 /**
  * 
@@ -17,7 +17,7 @@ import vo.salesman.*;
  */
 public interface GetSales {
 	public boolean approvalSales(String id, int approval);
-	public void updateSales(SalesVO svo);
-	public ArrayList<SalesVO> getUncheckedSales();
-	public ArrayList<SalesVO> getCheckedSales();
+	public void updateSales(CourierVO svo);
+	public ArrayList<CourierVO> getUncheckedSales();
+	public ArrayList<CourierVO> getCheckedSales();
 }

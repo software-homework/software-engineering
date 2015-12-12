@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import ui.TableModel;
-import vo.salesman.ImportVO;
+import vo.courier.ImportVO;
 import businesslogic.finance.AccountBL;
 import businesslogicservice.manager.GetDocument;
 

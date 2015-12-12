@@ -2,10 +2,10 @@ package vo.finance;
 
 import java.util.ArrayList;
 
+import po.courier.CustomerPO;
 import po.finance.AccountPO;
 import po.finance.LedgerPO;
-import po.salesman.CustomerPO;
-import vo.salesman.CustomerVO;
+import vo.courier.CustomerVO;
 
 public class LedgerVO
 {

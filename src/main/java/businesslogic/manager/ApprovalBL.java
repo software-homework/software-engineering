@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import businesslogic.courier.CustomerBL;
+import businesslogic.courier.ImportBL;
+import businesslogic.courier.CourierBL;
 import businesslogic.finance.AccountBL;
-import businesslogic.salesman.CustomerBL;
-import businesslogic.salesman.ImportBL;
-import businesslogic.salesman.SalesBL;
-import businesslogic.stockManage.CommodityBL;
-import businesslogic.stockManage.PresentBL;
-import businesslogic.stockManage.StockLossBL;
-import businesslogic.stockManage.StockOverflowBL;
+import businesslogic.logistics.CommodityBL;
+import businesslogic.logistics.PresentBL;
+import businesslogic.logistics.LogisticsLossBL;
+import businesslogic.logistics.LogisticsOverflowBL;
 import businesslogicservice.finance.GetCustomerBL;
 import businesslogicservice.manager.ApprovalBLService;
 import businesslogicservice.manager.GetCommodity;
@@ -29,15 +29,15 @@ import dataservice.manager.PromotionDataService;
 import po.manager.BargainPO;
 import po.manager.CustPromPO;
 import po.manager.TotalPromPO;
+import vo.courier.CustomerVO;
+import vo.courier.ImportVO;
+import vo.courier.CourierVO;
 import vo.finance.CashExpensesVO;
 import vo.finance.DocumentVO;
-import vo.salesman.CustomerVO;
-import vo.salesman.ImportVO;
-import vo.salesman.SalesVO;
-import vo.stockManage.CommodityVO;
-import vo.stockManage.PresentVO;
-import vo.stockManage.StockLossVO;
-import vo.stockManage.StockOverflowVO;
+import vo.logistics.CommodityVO;
+import vo.logistics.PresentVO;
+import vo.logistics.LogisticsLossVO;
+import vo.logistics.LogisticsOverflowVO;
 
 /**
  * 
@@ -60,10 +60,10 @@ public class ApprovalBL implements ApprovalBLService{
 	GetPresent getPresent;
 
 	ArrayList<ImportVO> importAL;
-	ArrayList<SalesVO> salesAL;
+	ArrayList<CourierVO> salesAL;
 	ArrayList<DocumentVO> documentAL;
-	ArrayList<StockLossVO> stockLossAL;
-	ArrayList<StockOverflowVO> stockOverflowAL;
+	ArrayList<LogisticsLossVO> stockLossAL;
+	ArrayList<LogisticsOverflowVO> stockOverflowAL;
 	ArrayList<PresentVO> presentAL;
 	ArrayList<CashExpensesVO> cashExpensesAL;
 	PromotionDataService data;
@@ -77,19 +77,19 @@ public class ApprovalBL implements ApprovalBLService{
 		}
 		
 		getImport = new ImportBL();
-		getSales = new SalesBL();
+		getSales = new CourierBL();
 		getDocument = new AccountBL();
-		getStockLoss = new StockLossBL();
-		getStockOverflow = new StockOverflowBL();
+		getStockLoss = new LogisticsLossBL();
+		getStockOverflow = new LogisticsOverflowBL();
 		getPresent = new PresentBL();
 	}
 	//--------------------------------------------------------------
 	public String[] show() {
 		importAL = new ArrayList<ImportVO>();
-		salesAL = new ArrayList<SalesVO>();
+		salesAL = new ArrayList<CourierVO>();
 		documentAL = new ArrayList<DocumentVO>();
-		stockLossAL = new ArrayList<StockLossVO>();
-		stockOverflowAL = new ArrayList<StockOverflowVO>();
+		stockLossAL = new ArrayList<LogisticsLossVO>();
+		stockOverflowAL = new ArrayList<LogisticsOverflowVO>();
 		presentAL = new ArrayList<PresentVO>();
 		cashExpensesAL = new ArrayList<CashExpensesVO>();
 		
@@ -142,10 +142,10 @@ public class ApprovalBL implements ApprovalBLService{
 	}
 	//-------------------------------------------------------
 	//查找
-	public SalesVO finSales(String id) {
-		salesAL = new ArrayList<SalesVO>();
+	public CourierVO finSales(String id) {
+		salesAL = new ArrayList<CourierVO>();
 		salesAL = getSales.getUncheckedSales();
-		for(SalesVO i : salesAL) {
+		for(CourierVO i : salesAL) {
 			if(i.id.equals(id)) {
 				return i;
 			}
@@ -175,10 +175,10 @@ public class ApprovalBL implements ApprovalBLService{
 		return null;
 	}
 	
-	public StockLossVO finStockLoss(String id) {
-		stockLossAL = new ArrayList<StockLossVO>();
+	public LogisticsLossVO finStockLoss(String id) {
+		stockLossAL = new ArrayList<LogisticsLossVO>();
 		stockLossAL = getStockLoss.getUncheckedStockLoss();
-		for(StockLossVO i : stockLossAL) {
+		for(LogisticsLossVO i : stockLossAL) {
 			if(i.id.equals(id)) {
 				return i;
 			}
@@ -186,10 +186,10 @@ public class ApprovalBL implements ApprovalBLService{
 		return null;
 	}
 	
-	public StockOverflowVO finStockOverflow(String id) {
-		stockOverflowAL = new ArrayList<StockOverflowVO>();
+	public LogisticsOverflowVO finStockOverflow(String id) {
+		stockOverflowAL = new ArrayList<LogisticsOverflowVO>();
 		stockOverflowAL = getStockOverflow.getUncheckedStockOverflow();
-		for(StockOverflowVO i : stockOverflowAL) {
+		for(LogisticsOverflowVO i : stockOverflowAL) {
 			if(i.id.equals(id)) {
 				return i;
 			}
@@ -219,7 +219,7 @@ public class ApprovalBL implements ApprovalBLService{
 		return null;
 	}
 	//修改
-	public boolean modifySales(SalesVO vo) {
+	public boolean modifySales(CourierVO vo) {
 		getSales.updateSales(vo);
 		return true;
 	}
@@ -361,7 +361,7 @@ public class ApprovalBL implements ApprovalBLService{
 		ArrayList<CustPromPO> custAL = new ArrayList<CustPromPO>();
 		ArrayList<BargainPO> bargAL = new ArrayList<BargainPO>();
 		ArrayList<TotalPromPO> totaAL = new ArrayList<TotalPromPO>();
-		SalesVO temp = this.finSales(id);
+		CourierVO temp = this.finSales(id);
 		String goods = "";
 		//针对客户
 		String type = "";

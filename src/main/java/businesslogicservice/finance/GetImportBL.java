@@ -2,7 +2,7 @@ package businesslogicservice.finance;
 
 import java.util.ArrayList;
 
-import vo.salesman.ImportVO;
+import vo.courier.ImportVO;
 
 public interface GetImportBL {
 	public ArrayList<ImportVO> getCheckedImport();

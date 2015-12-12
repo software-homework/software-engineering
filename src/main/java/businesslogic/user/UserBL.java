@@ -2,7 +2,7 @@ package businesslogic.user;
 
 import java.util.ArrayList;
 
-import businesslogic.salesman.GetUsername;
+import businesslogic.courier.GetUsername;
 import businesslogicservice.user.UserBLService;
 import data.user.UserData;
 import dataservice.user.UserDataService;

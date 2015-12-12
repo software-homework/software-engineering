@@ -3,10 +3,10 @@ package po.finance;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import po.salesman.CustomerPO;
+import po.courier.CustomerPO;
+import vo.courier.CustomerVO;
 import vo.finance.AccountVO;
 import vo.finance.LedgerVO;
-import vo.salesman.CustomerVO;
 
 /**
  * @author QQ

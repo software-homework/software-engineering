@@ -10,9 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import vo.stockManage.StockLossVO;
 import businesslogic.finance.AccountBL;
 import businesslogicservice.manager.GetDocument;
+import vo.logistics.LogisticsLossVO;
 
 /**
  * 
@@ -28,7 +28,7 @@ import businesslogicservice.manager.GetDocument;
 @SuppressWarnings("serial")
 public class ShowStoL extends Show{
 	private GetDocument get;
-	private StockLossVO vo;
+	private LogisticsLossVO vo;
 	//-----------------------------------------------------------------
 	public ShowStoL(String id) {
 		super(id);

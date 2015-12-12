@@ -22,10 +22,10 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import businesslogic.user.UserBL;
 import businesslogicservice.user.UserBLService;
+import ui.courier.SalesMain;
 import ui.finance.frame.FinanceFrame;
+import ui.logistics.LogisticsMain;
 import ui.manager.ManagerFrame;
-import ui.salesman.SalesMain;
-import ui.stockManage.StockMain;
 import vo.user.UserVO;
 
 @SuppressWarnings("serial")
@@ -138,7 +138,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
 				if (isSuccess) {
 					if (((String) typeBC.getSelectedItem()).equals("物流人员")) {
-						new StockMain(userVO);
+						new LogisticsMain(userVO);
 					} else if (((String) typeBC.getSelectedItem()).equals("快递员")) {
 						SalesMain salesMain = new SalesMain(userVO);
 					} else if (((String) typeBC.getSelectedItem()).equals("财务人员")) {

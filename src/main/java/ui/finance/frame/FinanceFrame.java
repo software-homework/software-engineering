@@ -28,14 +28,14 @@ import ui.finance.panel.LedgerPanel;
 import ui.manager.Log;
 import ui.user.LoginFrame;
 import ui.user.UserInfo;
+import vo.courier.ImportVO;
+import vo.courier.CourierVO;
 import vo.finance.AccountVO;
 import vo.finance.DocumentVO;
 import vo.finance.LedgerVO;
-import vo.salesman.ImportVO;
-import vo.salesman.SalesVO;
-import vo.stockManage.PresentVO;
-import vo.stockManage.StockLossVO;
-import vo.stockManage.StockOverflowVO;
+import vo.logistics.PresentVO;
+import vo.logistics.LogisticsLossVO;
+import vo.logistics.LogisticsOverflowVO;
 import vo.user.UserVO;
 
 @SuppressWarnings("serial")
@@ -320,16 +320,16 @@ public class FinanceFrame extends JFrame implements ActionListener, MouseListene
 				ImportVO importVO = abl.findOneImport(id);
 				new ShowImport(this, "进货退货单", true, importVO);
 			} else if (id.split("-")[0].equals("XSD")) {
-				SalesVO salesVO = abl.findOneSales(id);
+				CourierVO salesVO = abl.findOneSales(id);
 				new ShowSale(this, "销售单", true, salesVO);
 			} else if (id.split("-")[0].equals("XSTHD")) {
-				SalesVO salesVO = abl.findOneSales(id);
+				CourierVO salesVO = abl.findOneSales(id);
 				new ShowSale(this, "销售退货单", true, salesVO);
 			} else if (id.split("-")[0].equals("BYD")) {
-				StockOverflowVO stockOverflowVO = abl.findOneStockOverflow(id);
+				LogisticsOverflowVO stockOverflowVO = abl.findOneStockOverflow(id);
 				new ShowStockBill(this, "报溢单", true, null, stockOverflowVO);
 			} else if (id.split("-")[0].equals("BSD")) {
-				StockLossVO stockLossVO = abl.findOneStockLoss(id);
+				LogisticsLossVO stockLossVO = abl.findOneStockLoss(id);
 				new ShowStockBill(this, "报损单", true, stockLossVO, null);
 			} else if (id.split("-")[0].equals("ZSD")) {
 				PresentVO presentVO = abl.findOnePresent(id);

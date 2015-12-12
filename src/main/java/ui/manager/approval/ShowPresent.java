@@ -15,7 +15,7 @@ import javax.swing.JTable;
 
 import ui.TableModel;
 import vo.LogVO;
-import vo.stockManage.PresentVO;
+import vo.logistics.PresentVO;
 import businesslogic.LogBL;
 import businesslogic.manager.ApprovalBL;
 import businesslogicservice.LogBLService;
