@@ -1,0 +1,12 @@
+package stockManage;
+
+import businesslogic.stockManage.CategoryBL;
+import businesslogicservice.stockManage.CategoryBLService;
+
+public class Client {
+	public static void main(String[] args){
+		CategoryBLService category = new CategoryBL();
+		CategoryBLService_Driver driver = new CategoryBLService_Driver();
+		driver.drive(category);
+	}
+}

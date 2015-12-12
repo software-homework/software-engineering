@@ -1,0 +1,20 @@
+package vo.finance;
+
+import vo.salesman.CustomerVO;
+import vo.stockManage.CommodityVO;
+
+public class EarlyAccountVO
+{
+	public CommodityVO comodityVO;
+	public CustomerVO customerVO;
+	public AccountVO accountVO;
+	
+	//================================================================================================
+	public EarlyAccountVO(CommodityVO comodityVO, CustomerVO customerVO, AccountVO accountVO)
+	{
+		this.comodityVO = comodityVO;
+		this.customerVO = customerVO;
+		this.accountVO = accountVO;
+	}
+	//===============================================================================================
+}

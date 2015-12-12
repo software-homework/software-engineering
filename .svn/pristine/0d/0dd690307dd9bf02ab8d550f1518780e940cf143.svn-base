@@ -1,0 +1,61 @@
+package po.finance;
+
+import java.io.Serializable;
+
+import po.salesman.CustomerPO;
+import po.stockManage.CommodityPO;
+
+public class EarlyAccountPO implements Serializable
+{
+	private static final long serialVersionUID = 1L;
+	
+	private CommodityPO comodityPO;
+	private CustomerPO customerPO;
+	private AccountPO accountPO;
+	
+	//================================================================================================
+
+	enum ResultMessage
+	{
+	}
+	
+	public EarlyAccountPO(CommodityPO comodityPO, CustomerPO customerPO, AccountPO accountPO)
+	{
+		this.comodityPO = comodityPO;
+		this.customerPO = customerPO;
+		this.accountPO = accountPO;
+	}
+	
+	/**********************************************************************
+	 * get set
+	 **********************************************************************/
+	public CommodityPO getComodityPO() 
+	{
+		return comodityPO;
+	}
+
+	public void setComodityPO(CommodityPO comodityPO)
+	{
+		this.comodityPO = comodityPO;
+	}
+
+	public CustomerPO getCustomerPO() 
+	{
+		return customerPO;
+	}
+
+	public void setCustomerPO(CustomerPO customerPO) 
+	{
+		this.customerPO = customerPO;
+	}
+
+	public AccountPO getAccountPO() 
+	{
+		return accountPO;
+	}
+
+	public void setAccountPO(AccountPO accountPO) 
+	{
+		this.accountPO = accountPO;
+	}
+}

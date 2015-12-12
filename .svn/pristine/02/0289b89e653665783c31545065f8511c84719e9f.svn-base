@@ -1,0 +1,162 @@
+package stockManage;
+
+import vo.stockManage.CategoryVO;
+import vo.stockManage.CommodityVO;
+import businesslogic.stockManage.CommodityBL;
+import businesslogicservice.stockManage.CategoryBLService;
+import businesslogicservice.stockManage.CommodityBLService;
+
+public class CategoryBLService_Driver {
+	public void drive(CategoryBLService category){
+		addCategory1(category);
+	}
+	
+	public void addCategory1(CategoryBLService category){
+		CategoryVO father = new CategoryVO();
+		father.id = "0-0";
+		CategoryVO child = new CategoryVO("LED灯");
+		if(category.addCategory(child, father)){
+			System.out.println("添加成功");
+		}
+		else{
+			System.out.println("添加失败");
+		}
+	}
+	
+	public void addCategory2(CategoryBLService category){
+		CategoryVO father = new CategoryVO();
+		father.id = "0-0";
+		CategoryVO child = new CategoryVO("LED灯");
+		if(category.addCategory(child, father)){
+			System.out.println("添加成功");
+		}
+		else{
+			System.out.println("添加失败");
+		}
+		
+		if(category.addCategory(child, father)){
+			System.out.println("添加成功");
+		}
+		else{
+			System.out.println("添加失败");
+		}
+	}
+	
+	public void addCategory3(CategoryBLService category){
+		CommodityBLService cbs = new CommodityBL();
+		CategoryVO father = new CategoryVO();
+		father.id = "0-0";
+		CategoryVO child = new CategoryVO("日光灯类");
+		if(cbs.addCommodity(new CommodityVO("飞利浦","SR01",10,10),father)){
+			if(category.addCategory(child, father)){
+				System.out.println("添加成功");
+			}
+			else{
+				System.out.println("添加失败");
+			}
+		}
+	}
+	
+	public void deleteCategory1(CategoryBLService category){
+		CategoryVO father = new CategoryVO();
+//		CategoryVO child = new CategoryVO("灯");
+		CategoryVO child = new CategoryVO("日光灯类");
+		father.id = "0";
+		if(category.deleteCategory(child, father)){
+			System.out.println("删除成功");
+		}
+		else{
+			System.out.println("删除失败");
+		}
+	}
+	
+    public void deleteCategory2(CategoryBLService category){
+    	CategoryVO father = new CategoryVO();
+		father.id = "0";
+		CategoryVO child = new CategoryVO("日光灯类");
+		if(category.addCategory(new CategoryVO("LED灯"), child)){
+			if(category.addCategory(child, father)){
+				if(category.deleteCategory(child, father)){
+					System.out.println("删除成功");
+				}
+				else{
+					System.out.println("删除失败");
+				}
+			}
+		}
+	}
+	
+	public void deleteCategory3(CategoryBLService category){
+		CommodityBLService cbs = new CommodityBL();
+		CategoryVO father = new CategoryVO();
+		father.id = "0";
+		CategoryVO child = new CategoryVO("日光灯类");
+		if(cbs.addCommodity(new CommodityVO("飞利浦","SR01",10,10), child)){
+			if(category.addCategory(child, father)){
+				if(category.deleteCategory(child, father)){
+					System.out.println("删除成功");
+				}
+				else{
+					System.out.println("删除失败");
+				}
+			}
+		}
+	}
+	
+	public void deleteCategory4(CategoryBLService category){
+		CategoryVO father = new CategoryVO();
+		father.id = "0";
+		CategoryVO child = new CategoryVO("日光灯类");
+		if(category.addCategory(child, father)){
+			if(category.deleteCategory(child, father)){
+				System.out.println("删除成功");
+			}
+			else{
+				System.out.println("删除失败");
+			}
+		}
+	}
+	
+	public void updateCategory1(CategoryBLService category){
+		CategoryVO father = new CategoryVO();
+		father.id = "0";
+		CategoryVO child = new CategoryVO("日光灯类");
+		if(category.addCategory(child, father)){
+			if(category.updateCategory(child, new CategoryVO("LED灯"), father)){
+				System.out.println("修改成功");
+			}
+			else{
+				System.out.println("修改失败");
+			}
+		}
+	}
+	
+	public void updateCategory2(CategoryBLService category){
+		CategoryVO father = new CategoryVO();
+		father.id = "0";
+		CategoryVO child = new CategoryVO("日光灯类");
+		if(category.updateCategory(child, new CategoryVO("LED灯"), father)){
+			System.out.println("修改成功");
+		}
+		else{
+			System.out.println("修改失败");
+		}
+	}
+	
+	public void updateCategory3(CategoryBLService category){
+		CategoryVO father = new CategoryVO();
+		father.id = "0";
+		CategoryVO child = new CategoryVO("日光灯类");
+		CategoryVO newChild = new CategoryVO("LED灯");
+		if(category.addCategory(child, father)){
+			if(category.addCategory(newChild, father)){
+				if(category.updateCategory(child, newChild, father)){
+					System.out.println("修改成功");
+				}
+				else{
+					System.out.println("修改失败");
+				}
+			}
+		}
+	}
+}

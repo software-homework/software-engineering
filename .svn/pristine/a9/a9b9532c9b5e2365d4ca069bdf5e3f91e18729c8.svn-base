@@ -1,0 +1,240 @@
+package businesslogic.stockManage;
+
+import po.stockManage.CategoryPO;
+import po.stockManage.CommodityPO;
+import vo.stockManage.CategoryVO;
+import vo.stockManage.CommodityVO;
+import data.stockManage.StockData;
+import dataservice.stockManage.StockDataService;
+import businesslogicservice.stockManage.CategoryBLService;
+
+public class CategoryBL implements CategoryBLService{
+	private StockDataService data = null;
+	
+	public CategoryBL(){
+		data = StockData.getInstance();
+	}
+	
+	public CategoryVO getRoot(){
+		return findCategory("-1");
+	}
+	
+	public boolean addCategory(CategoryVO category, CategoryVO father) {
+		CategoryPO cp = findCategoryPO(father);
+		if(cp == null){
+			return false;
+		}
+		for(CategoryPO c:cp.categoryList){
+			if(c.getName().equals(category.categoryname)){
+				return false;
+			}
+		}
+		
+		CategoryPO cpp = new CategoryPO();
+		cpp.setName(category.categoryname);
+		if (data.add(cpp, cp)){
+			updateId();
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean addCategory(CategoryVO category) {
+		CategoryPO cp = data.getRoot();
+		if(cp == null){
+			return false;
+		}
+		for(CategoryPO c:cp.categoryList){
+			if(c.getName().equals(category.categoryname)){
+				return false;
+			}
+		}
+		
+		CategoryPO cpp = new CategoryPO();
+		cpp.setName(category.categoryname);
+		if (data.add(cpp, cp)){
+			updateId();
+			return true;
+		}
+		return false;
+	}
+
+	public boolean deleteCategory(CategoryVO category, CategoryVO father) {
+		CategoryPO cp1 = findCategoryPO(father);
+		if(cp1 == null){
+			return false;
+		}
+		CategoryPO cp2=findCategoryPO(category);
+		if(cp2 == null){
+			return false;
+		}
+		if(data.delete(cp2, cp1)){
+			updateId();
+		}
+		
+		return true;
+	}
+
+	public boolean updateCategory(CategoryVO category,CategoryVO newCategory,CategoryVO father) {
+		CategoryPO cp1 = findCategoryPO(father);
+		if(cp1 == null){
+			return false;
+		}
+		CategoryPO cp2=findCategoryPO(category);
+		if(cp2 == null){
+			return false;
+		}
+		for(CategoryPO c:cp1.categoryList){
+			if(c.getName().equals(newCategory.categoryname)){
+				return false;
+			}
+		}
+		CategoryPO cpp = new CategoryPO();
+		categoryVoToPo(newCategory,cpp);
+		for (CategoryPO c : cp2.categoryList){
+			cpp.categoryList.add(c);
+		}
+		for (CommodityPO c : cp2.commodityList){
+			cpp.commodityList.add(c);
+		}
+		
+		if (data.update(cp2, cpp, cp1)){
+			updateId();
+			return true;
+		}
+		return false;
+	}
+
+	public CategoryVO findCategory(String id,CategoryPO category){
+		CategoryVO cv = null;
+		for(CategoryPO cp:category.categoryList){
+			if(cp.getId().equals(id)){
+				cv = new CategoryVO();
+				cv.id = cp.getId();
+				cv.categoryname = cp.getName();
+				break;
+			}
+			else{
+				cv=findCategory(id,cp);
+				if(cv != null){
+					break;
+				}
+			}
+		}
+		return cv;
+	}
+	
+	public CategoryVO findCategory(String id){
+		if(id.equals("-1")){
+			return categoryPoToVo(data.getRoot());
+		}
+		return findCategory(id,data.getRoot());
+	}
+	
+	public CategoryPO findCategoryPO(String id,CategoryPO category){
+		if(category == null){
+			return null;
+		}
+		if(category.categoryList.size() != 0){
+			for(CategoryPO cp:category.categoryList){
+				if(cp.getId().equals(id)){
+					return cp;
+				}
+				else{
+					CategoryPO cpp = findCategoryPO(id,cp);
+					if(cpp != null){
+						return cpp;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public CategoryPO findCategoryPO(CategoryVO cv){
+		if(cv.id.equals("-1")){
+			return data.getRoot();
+		}
+		return findCategoryPO(cv.id,data.getRoot());
+	}
+	
+	public void categoryVoToPo(CategoryVO cv,CategoryPO cp){
+		cp.setId(cv.id);
+		cp.setName(cv.categoryname);
+	}
+	
+	public CategoryVO categoryPoToVo(CategoryPO cp){
+		if(cp == null){
+			return null;
+		}
+		CategoryVO cv=new CategoryVO();
+		cv.id = cp.getId();
+		cv.categoryname = cp.getName();
+		for(CategoryPO c:cp.categoryList){
+			cv.categoryList.add(categoryPoToVo(c));
+		}
+		for(CommodityPO com:cp.commodityList){
+			cv.commodityList.add(new CommodityBL().commodityPoToVo(com));
+		}
+		return cv;
+	}
+	
+	public void updateId(CategoryPO category, CategoryPO father){
+		if (father.getId().equals("-1")){
+			category.setId("" + father.categoryList.indexOf(category));
+		}
+		else{
+			category.setId(father.getId() + "-" + father.categoryList.indexOf(category));
+		}
+		for (CategoryPO child : category.categoryList){
+			updateId(child, category);
+		}
+		for (CommodityPO c : category.commodityList){
+			c.setId(category.getId() + "-" + category.commodityList.indexOf(c));
+		}
+	}
+
+	public void updateId(){
+		for (CategoryPO category : data.getRoot().categoryList){
+			updateId(category, data.getRoot());
+		}
+	}
+	
+	public CategoryVO getFather(CategoryVO category){
+		return categoryPoToVo(getFather(findCategoryPO(category),data.getRoot()));
+	}
+
+	public CategoryPO getFather(CategoryPO category,CategoryPO father){
+		for(CategoryPO cp : father.categoryList){
+			if(cp == category){
+				return father;
+			}
+		}
+		for(CategoryPO cp : father.categoryList){
+			CategoryPO cpp = getFather(category,cp);
+			if(cpp != null){
+				return cpp;
+			}
+		}
+		return null;
+	}
+	
+	public CategoryPO getFather(CommodityPO commodity, CategoryPO category){
+		for (CommodityPO cp : category.commodityList){
+			if (cp == commodity){
+				return category;
+			}
+		}
+		for (CategoryPO cp : category.categoryList){
+			CategoryPO cpp = getFather(commodity, cp);
+			if (cpp != null){
+				return cpp;
+			}
+		}
+		return null;
+	}
+	
+	public CategoryVO getFather(CommodityVO commodity){
+		return categoryPoToVo(getFather(new CommodityBL().commodityVoToPo(commodity), data.getRoot()));
+	}
+}

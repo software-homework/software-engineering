@@ -1,0 +1,13 @@
+package businesslogicservice.stockManage;
+
+import vo.stockManage.StockLossVO;
+
+public interface StockLossBLService {
+    public boolean add(StockLossVO slv);
+	
+	public boolean setApproval(StockLossVO slv,int approval);
+	
+	public StockLossVO getStockLoss(int index);
+	
+	public StockLossVO getStockLoss(String id);
+}

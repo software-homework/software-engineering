@@ -1,0 +1,5 @@
+package businesslogic;
+
+public class IP {
+	public final static String ip = "192.168.137.1:9999";
+}

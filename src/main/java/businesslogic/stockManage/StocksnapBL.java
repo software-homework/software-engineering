@@ -1,0 +1,93 @@
+package businesslogic.stockManage;
+
+import java.util.ArrayList;
+
+import businesslogicservice.stockManage.StocksnapBLService;
+import data.stockManage.StocksnapData;
+import dataservice.stockManage.StocksnapDataService;
+import po.stockManage.StocksnapPO;
+import vo.stockManage.StocksnapVO;
+
+public class StocksnapBL implements StocksnapBLService{
+	private StocksnapDataService ssds;
+	
+	public StocksnapBL(){
+		try {
+			ssds = StocksnapData.getInstance();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean add(StocksnapVO ssv){
+		if(ssv == null){
+			return false;
+		}
+		
+		if(showStocksnap().size() == 0){
+			ssv.batchNumber = "1";
+		}
+		else{
+			if(getLast().batch.equals(ssv.batch)){
+				ssv.batchNumber = getLast().batchNumber;
+			}
+			else if(!getLast().batch.substring(0, getLast().batch.indexOf(" ")).equals(ssv.batch.substring(0, ssv.batch.indexOf(" ")))){
+				ssds.remove();
+				ssv.batchNumber = "1";
+			}
+			else{
+				int i = Integer.parseInt(getLast().batchNumber);
+			    ssv.batchNumber = String.valueOf(i + 1);
+			}
+		}
+		
+		if(ssds.add(stocksnapVoToPo(ssv))){
+			return true;
+		}
+		return false;
+	}
+	
+	public StocksnapPO stocksnapVoToPo(StocksnapVO ssv){
+		if(ssv == null){
+			return null;
+		}
+		StocksnapPO ssp = new StocksnapPO();
+		ssp.setName(ssv.name);
+		ssp.setModel(ssv.model);
+		ssp.setNumber(ssv.number);
+		ssp.setAverage(ssv.average);
+		ssp.setBatch(ssv.batch);
+		ssp.setBatchNumber(ssv.batchNumber);
+		ssp.setTime(ssv.outTime);
+		ssp.setRow(ssv.row);
+		return ssp;
+	}
+	
+	public StocksnapVO stocksnapPoToVo(StocksnapPO ssp){
+		if(ssp == null){
+			return null;
+		}
+		StocksnapVO ssv = new StocksnapVO();
+		ssv.name = ssp.getName();
+		ssv.model = ssp.getModel();
+		ssv.number = ssp.getNumber();
+		ssv.average = ssp.getAverage();
+		ssv.batch = ssp.getBatch();
+		ssv.batchNumber = ssp.getBatchNumber();
+		ssv.outTime = ssp.getTime();
+		ssv.row = ssp.getRow();
+		return ssv;
+	}
+	
+	public ArrayList<StocksnapVO> showStocksnap(){
+		ArrayList<StocksnapVO> list = new ArrayList<StocksnapVO>();
+		for(StocksnapPO ssp : ssds.getStocksnap()){
+			list.add(stocksnapPoToVo(ssp));
+		}
+		return list;
+	}
+	
+	public StocksnapVO getLast(){
+		return stocksnapPoToVo(ssds.getLast());
+	}
+}

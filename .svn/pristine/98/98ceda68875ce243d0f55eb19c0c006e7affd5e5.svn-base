@@ -1,0 +1,17 @@
+package ui.finance;
+
+
+
+public class Test 
+{
+
+	public static void main(String[] args)
+	{		
+//		new FinanceFrame(new UserVO("","stkSB","","经理"));
+//		new LoginFrame();
+//	    DecimalFormat df = new DecimalFormat("#.00");
+//        System.out.println(df.format(1000.01));
+//		new AdminFrame();
+	}
+
+}

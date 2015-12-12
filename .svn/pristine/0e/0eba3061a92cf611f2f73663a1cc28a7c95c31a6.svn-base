@@ -1,0 +1,10 @@
+package businesslogicservice.stockManage;
+
+import vo.stockManage.StockOverflowVO;
+
+public interface StockOverflowBLService {
+	public boolean add(StockOverflowVO sofv);
+	
+	public boolean setApproval(StockOverflowVO sofv,int approval);
+	
+}

@@ -1,0 +1,128 @@
+package ui.finance.panel;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import ui.finance.frame.AddAccountDialog;
+import ui.finance.frame.FinanceFrame;
+import ui.finance.frame.FindAccountDialog;
+import ui.finance.frame.UpdateAccountDialog;
+import vo.finance.AccountVO;
+import vo.user.UserVO;
+import businesslogic.finance.AccountBL;
+import businesslogicservice.finance.AccountBLService;
+
+@SuppressWarnings("serial")
+public class AccountManagePanel extends JPanel implements ActionListener
+{
+	UserVO userVO;
+	FinanceFrame jFrame;
+	
+	String[] name = new String[]{"添加帐户", "删除帐户",
+			"更新帐户", "查看帐户"};
+	JButton[] jButton = new JButton[name.length];
+
+	int widthOfButton = 100;
+	int heightOfButton = 30;
+	
+	public AccountManagePanel(FinanceFrame jFrame, UserVO userVO)
+	{
+		this.jFrame = jFrame;
+		this.userVO = userVO;
+		
+		this.setLayout(null);
+		this.setPreferredSize(new Dimension(widthOfButton, 0));
+		
+		for(int i = 0; i < this.name.length; i++)
+		{
+			this.jButton[i] = new JButton(this.name[i]);
+			this.jButton[i].setSize(widthOfButton, heightOfButton);
+			this.jButton[i].setLocation(0, i * heightOfButton);
+
+			this.jButton[i].addActionListener(this);
+			this.add(this.jButton[i]);
+		}
+	}
+
+	@SuppressWarnings("unused")
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		if(arg0.getSource() == this.jButton[0])			//添加
+		{
+			if(this.userVO.permission.equals("经理"))
+			{
+				AddAccountDialog addAccountDialog = new AddAccountDialog(this.jFrame, "添加账户", true);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "无此权限!", null, 0);
+			}
+		}
+		else if(arg0.getSource() == this.jButton[1])	//删除
+		{
+			if(this.userVO.permission.equals("经理"))
+			{
+				int[] rows = this.jFrame.getTable().getSelectedRows();
+				
+				if(rows.length == 0)
+				{
+					JOptionPane.showMessageDialog(null, "请先选中要删除的账户信息!(Ctrl + 鼠标左键可多选)", null, 0);
+				}
+				else
+				{
+					int n = JOptionPane.showConfirmDialog(null, "是否确认当前操作?", null,
+	                        JOptionPane.YES_NO_OPTION);
+					
+					if(n == 0)
+					{
+						AccountBLService accountBLService = new AccountBL();
+						for(int i = 0; i < rows.length; i++)
+						{
+							accountBLService.deleteAccount((String)(this.jFrame.getTable().getValueAt(rows[i], 0)));
+						}
+						this.jFrame.getStatusBar().setText("已成功删除所选的所有账户!");
+						
+						//刷新Table
+						ArrayList<AccountVO> data = accountBLService.findAll("");
+						this.jFrame.remove(this.jFrame.getScrollPanel());
+						this.jFrame.add(this.jFrame.createTable(data, null, null, null, null), BorderLayout.CENTER);
+						this.jFrame.setVisible(true);
+					}
+				}
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "无此权限!", null, 0);
+			}
+		}
+		else if(arg0.getSource() == this.jButton[2])	//更新
+		{
+			if(this.userVO.permission.equals("经理"))
+			{
+				UpdateAccountDialog updateAccountDialog = new UpdateAccountDialog(this.jFrame, "更新账户", true, this.userVO);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "无此权限!", null, 0);
+			}
+		}
+		else if(arg0.getSource() == this.jButton[3])	//查找
+		{
+			if(this.userVO.permission.equals("经理"))
+			{
+				FindAccountDialog findAccountDialog = new FindAccountDialog(this.jFrame, "查找账户", true, this.userVO);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "无此权限!", null, 0);
+			}
+		}
+	}
+}

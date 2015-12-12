@@ -1,0 +1,297 @@
+package data.stockManage;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Stack;
+
+import po.stockManage.CategoryPO;
+import po.stockManage.CommodityPO;
+import dataservice.stockManage.StockDataService;
+
+public class StockData implements StockDataService {
+	private static CategoryPO root;
+	private static StockData sd;
+
+	private StockData(){
+		root = new CategoryPO();
+		root.setId("-1");
+		root.setName("总分类");
+		readFromFile();
+		updateId();
+	}
+	
+	public static StockData getInstance(){
+		if(sd == null){
+			sd = new StockData();
+		}
+		return sd;
+	}
+	
+	public CategoryPO getRoot(){
+		return root;
+	}
+	
+	@Override
+	public boolean add(CommodityPO commodity, CategoryPO father) {
+		// TODO Auto-generated method stub
+		father.commodityList.add(commodity);
+		writeToFile();
+		return true;
+	}
+
+	@Override
+	public boolean addCommodityNum(CommodityPO commodity) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean delete(CommodityPO commodity, CategoryPO father) {
+		// TODO Auto-generated method stub
+		father.commodityList.remove(commodity);
+		writeToFile();
+		return true;
+	}
+
+	@Override
+	public boolean deleteCommodityNum(CommodityPO commodity) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean update(CommodityPO commodity, CommodityPO newCommodity,CategoryPO father) {
+		father.commodityList.add(father.commodityList.indexOf(commodity), newCommodity);
+		father.commodityList.remove(commodity);
+		writeToFile();
+		return true;
+	}
+
+	@Override
+	public ArrayList<CommodityPO> find(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<CommodityPO> showStock(CategoryPO father) {
+		// TODO Auto-generated method stub
+        ArrayList<CommodityPO> commodityList = new ArrayList<CommodityPO>();
+        if(father.categoryList.size() > 0){
+			for(CategoryPO c : father.categoryList){
+				commodityList.addAll(showStock(c));
+			}
+		}
+        else{
+        	for(CommodityPO cp : father.commodityList){
+        		commodityList.add(cp);
+        	}
+        }
+        return commodityList;
+	}
+	
+	@Override
+	public boolean add(CategoryPO category, CategoryPO father) {
+		father.categoryList.add(category);
+		writeToFile();
+		return true;
+	}
+
+	@Override
+	public boolean delete(CategoryPO category, CategoryPO father) {
+		// TODO Auto-generated method stub
+		father.categoryList.remove(category);
+		writeToFile();
+		return true;
+	}
+
+	@Override
+	public boolean update(CategoryPO category, CategoryPO newCategory,
+			CategoryPO father) {
+		// TODO Auto-generated method stub
+		father.categoryList.add(father.categoryList.indexOf(category), newCategory);
+		father.categoryList.remove(category);
+		writeToFile();
+		return true;
+	}
+
+	@Override
+	public CategoryPO find(CategoryPO category) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public void write(CategoryPO category,PrintWriter pw){
+		pw.println("<categorystart>:");
+		pw.println("<categoryname>:" + category.getName());
+		if(category.categoryList.size() > 0 || category.commodityList.size() > 0){
+			if(category.categoryList.size() == 0){
+				for(CommodityPO cp : category.commodityList){
+					pw.println("<commoditystart>:");
+					pw.println("<commodityname>:" + cp.getCommodityName());
+					pw.println("<model>:" + cp.getModel());
+					pw.println("<number>:" + cp.getNumber());
+					pw.println("<priceIn>:" + cp.getPriceIn());
+					pw.println("<priceOut>:" + cp.getPriceOut());
+					pw.println("<lastPriceIn>:" + cp.getLastPriceIn());
+					pw.println("<lastPriceOut>:" + cp.getLastPriceOut());
+					pw.println("<dangerNumber>:" + cp.getDangerNumber());
+					pw.println("<commodityend>");
+				}
+			}
+			else{
+				pw.println("<in>:");
+				for(CategoryPO cp : category.categoryList){
+					write(cp,pw);
+				}
+				pw.println("<out>");
+			}
+		}
+		pw.println("<categoryend>");
+	}
+	
+	public void readFromFile(){
+		try{
+			File file=new File("stock.txt");
+			root.categoryList.clear();
+			root.commodityList.clear();
+	        if(!file.exists()){
+	        	file.createNewFile();
+	        	return;
+	        }
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+			CategoryPO father = root;
+			Stack<CategoryPO> categorystack = new Stack<CategoryPO>();
+			CategoryPO category = null;
+			CommodityPO commodity = null;
+	        String str1 = null;
+	        str1 = br.readLine();
+	        while(str1 != null){
+	        	int i1 = str1.indexOf("<");
+	        	int i2 = str1.indexOf(">");
+	        	if(i1 < 0 || i2 < 0){
+	        		break;
+	        	}
+	        	String str2 = str1.substring(i1 + 1, i2);
+	        	String str3 = null;
+	        	if(str1.length() > i2 + 2){
+	        		str3 = str1.substring(i2 + 2);
+	        	}
+	        	if(str2.equals("categorystart")){
+	        		category = new CategoryPO();
+	        	}
+	        	else if(str2.equals("categoryend")){
+	        		father.categoryList.add(category);
+	        	}
+	        	else if(str2.equals("commoditystart")){
+	        		commodity = new CommodityPO();
+	        	}
+	        	else if(str2.equals("commodityend")){
+	        		category.commodityList.add(commodity);
+	        	}
+	        	else if(str2.equals("in")){
+	        		categorystack.push(father);
+	        		father = category;
+	        		category = null;
+	        	}
+	        	else if (str2.equals("out"))
+	        	{
+	        		category = father;
+	        		father = categorystack.pop();
+	        	}
+	        	else if(str2.equals("categoryname")){
+	        		if(category != null){
+	        			category.setName(new String(str3));
+	        		}
+	        	}
+	        	else if(str2.equals("commodityname")){
+	        		if(commodity != null){
+	        			commodity.setCommodityName(new String(str3));
+	        		}
+	        	}
+	        	else if (str2.equals("model")){
+	        		commodity.setModel(new String(str3));
+	        	}
+	        	else if (str2.equals("number")){
+	        		commodity.setNumber(Integer.parseInt(str3));
+	        	}
+	        	else if (str2.equals("priceIn")){
+	        		commodity.setPriceIn(Double.parseDouble(str3));
+	        	}
+	        	else if (str2.equals("priceOut")){
+	        		commodity.setPriceOut(Double.parseDouble(str3));
+	        	}
+	        	else if (str2.equals("lastPriceIn")){
+	        		commodity.setLastPriceIn(Double.parseDouble(str3));
+	        	}
+	        	else if (str2.equals("lastPriceOut")){
+	        		commodity.setLastPriceOut(Double.parseDouble(str3));
+	        	}
+	        	else if (str2.equals("dangerNumber")){
+	        		commodity.setDangerNumber(Integer.parseInt(str3));
+	        	}
+	        	str1 = br.readLine();
+	        }
+	        br.close();
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void writeToFile(){
+		try{
+			File file = new File("stock.txt");
+	        if(!file.exists()){
+	        	file.createNewFile();
+	        	root.categoryList.clear();
+				root.commodityList.clear();
+	        	return;
+	        }
+	        BufferedWriter bw = null;
+			
+			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+			PrintWriter pw = new PrintWriter(bw);
+			
+			
+			for(CategoryPO cp : root.categoryList){
+				write(cp, pw);
+			}
+	        pw.close();  
+	        
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateId(CategoryPO category, CategoryPO father){
+		if (father.getId().equals("-1")){
+			category.setId("" + father.categoryList.indexOf(category));
+		}
+		else{
+			category.setId(father.getId() + "-" + father.categoryList.indexOf(category));
+		}
+		for (CategoryPO child : category.categoryList){
+			updateId(child, category);
+		}
+		for (CommodityPO c : category.commodityList){
+			c.setId(category.getId() + "-" + category.commodityList.indexOf(c));
+		}
+	}
+
+	public void updateId(){
+		for (CategoryPO category : root.categoryList){
+			updateId(category, root);
+		}
+	}
+	
+}

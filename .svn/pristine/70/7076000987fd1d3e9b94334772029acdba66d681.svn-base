@@ -1,0 +1,56 @@
+package ui.manager.check;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import ui.manager.ManagerFrame;
+import vo.LogVO;
+import businesslogic.LogBL;
+import businesslogic.manager.CheckBL;
+import businesslogicservice.LogBLService;
+import businesslogicservice.manager.CheckBLService;
+
+/**
+ * 
+ * @date 2014年12月12日
+ * @time 下午7:17:24
+ * @author stk
+ *
+ */
+
+/*
+ * 查看经营情况表
+ */
+@SuppressWarnings("serial")
+public class CheckCondition extends Check{
+	private CheckBLService bl;
+	//--------------------------------------------------------------------------
+	public CheckCondition(ManagerFrame frame) {
+		super(frame);
+		columnName = new String[]{"销售收入", "商品类收入", "折让", "折让后总收入", "销售成本", "商品类支出", "总支出", "利润"};
+		//监听
+		search.addActionListener(new SearchListener());
+		output.addActionListener(new OutputListener());
+	}
+	//----------------------------------------------------------------------
+	//监听内部类
+	private class SearchListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			new SearchCondition(CheckCondition.this);
+		}
+	}
+	
+	private class OutputListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			bl = new CheckBL();
+			//状态栏设置
+			if(bl.output("salescondition.xls", CheckCondition.this.data, new String[]{"经营情况表", "销售收入", "商品类收入", "折让", "折让后总收入", "销售成本", "商品类支出", "总支出", "利润"})) {
+				frame.setStatusBar("导出表格成功");
+				LogBLService logBLService = new LogBL();
+				logBLService.addLog(new LogVO(frame.getUserName(), "导出经营情况表"));
+			}else {
+				frame.setStatusBar("导出表格失败");
+			}
+		}
+	}
+}

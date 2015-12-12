@@ -1,0 +1,72 @@
+package ui.stockManage;
+
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+import businesslogic.stockManage.MessageBL;
+import businesslogicservice.stockManage.MessageBLService;
+import ui.TableModel;
+import vo.stockManage.MessageVO;
+
+@SuppressWarnings("serial")
+public class Message extends JPanel{
+	public String type;
+	public int number;
+	public JTable table;
+	public JScrollPane scrollTable;
+	Object[][] data;
+	MessageBLService sdb;
+	public ArrayList<MessageVO> list = new ArrayList<MessageVO>();
+	
+	public Message(final StockMain sm){
+		sdb = new MessageBL();
+		list = sdb.showUnRead();
+		setData(list);
+		String[] columnTitle = {"消息类型","数量"};
+		table = new JTable(new TableModel(data,columnTitle));
+    	scrollTable=new JScrollPane(table);
+    	table.getTableHeader().setResizingAllowed(false);
+		table.getTableHeader().setReorderingAllowed(false);
+		scrollTable.setVisible(true);
+		
+	}
+	
+	public void setData(ArrayList<MessageVO> list){
+		data=new Object[5][2];
+		int c1 = 0;
+		int c2 = 0;
+		int c3 = 0;
+		int c4 = 0;
+		int c5 = 0;
+		for(int i = 0;i < list.size();i ++){
+			if(list.get(i).type.equals("库存报警")){
+				c1 ++;
+			}
+			else if(list.get(i).type.equals("进货")){
+				c2 ++;
+			}
+			else if(list.get(i).type.equals("进货退货")){
+				c3 ++;
+			}
+			else if(list.get(i).type.equals("销售")){
+				c4 ++;
+			}
+			else if(list.get(i).type.equals("销售退货")){
+				c5 ++;
+			}
+		}
+		data[0][0] = "库存报警";
+		data[0][1] = c1;
+		data[1][0] = "进货";
+		data[1][1] = c2;
+		data[2][0] = "进货退货";
+		data[2][1] = c3;
+		data[3][0] = "销售";
+		data[3][1] = c4;
+		data[4][0] = "销售退货";
+		data[4][1] = c5;
+	}
+}

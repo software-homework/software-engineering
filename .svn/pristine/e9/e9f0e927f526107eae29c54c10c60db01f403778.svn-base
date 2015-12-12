@@ -1,0 +1,164 @@
+package ui.stockManage;
+
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import vo.LogVO;
+import vo.stockManage.CategoryVO;
+import vo.stockManage.CommodityVO;
+import businesslogic.LogBL;
+import businesslogic.stockManage.CategoryBL;
+import businesslogic.stockManage.CommodityBL;
+import businesslogicservice.LogBLService;
+import businesslogicservice.stockManage.CategoryBLService;
+import businesslogicservice.stockManage.CommodityBLService;
+
+@SuppressWarnings("serial")
+public class FindCommodity extends JDialog{
+	final FindCommodity ik;
+	public JLabel label;
+	public TextField key;
+	public JButton btnEdit, btnNext, btnCancel;
+	public ArrayList<CommodityVO> commodityList;
+	public int count = 0;
+	CommodityBLService commoditybl;
+	CategoryBLService categorybl;
+	
+	public FindCommodity(final StockMain sm){
+		ik = this;
+		commoditybl = new CommodityBL();
+		categorybl = new CategoryBL();
+		
+		this.setSize(500, 250);
+		double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+		double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+		this.setLocation((int)(width - this.getWidth()) / 2,(int)(height - this.getHeight()) / 2);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		this.setLayout(null);
+		this.setResizable(false);
+		this.setTitle("查找商品");
+		this.setModal(true);
+		
+		label = new JLabel("关键字  ：");
+		label.setLocation(50, 20);
+		label.setSize(100, 30);
+		this.add(label);
+		
+		key = new TextField();
+		key.setLocation(150, 20);
+		key.setSize(260, 25);
+		this.add(key);
+		
+		final JCheckBox jcb1 = new JCheckBox("编号、名称、型号");
+		jcb1.setSize(260, 30);
+		jcb1.setLocation(50, 60);
+		this.add(jcb1);
+		
+		final JCheckBox jcb2 = new JCheckBox("数量、默认进价、默认售价、最近进价、最近售价");
+		jcb2.setSize(430, 30);
+		jcb2.setLocation(50, 90);
+		this.add(jcb2);
+		
+		
+		btnEdit = new JButton("查找");
+		btnEdit.setLocation(50, 150);
+		btnEdit.setSize(100, 30);
+		this.add(btnEdit);
+		btnEdit.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				if (e.getButton() == MouseEvent.BUTTON1){
+					if (key.getText().isEmpty()){
+						JOptionPane.showMessageDialog(ik, "输入内容不能为空！");
+						return;
+					}
+					
+					if(jcb1.isSelected()){
+						if(commoditybl.findCommodity(key.getText()).size() == 0){
+							JOptionPane.showMessageDialog(ik, "不存在！");
+							return;
+						}
+						else{
+							JOptionPane.showMessageDialog(ik, "查找成功！");
+							LogBLService lbs = new LogBL();
+							lbs.addLog(new LogVO("葛双豪","查找商品"));
+							commodityList = commoditybl.findCommodity(key.getText());
+							count = 0;
+							CommodityVO cv = commodityList.get(count);
+							CategoryVO father = commoditybl.getFather(cv);
+							sm.selectCommodity(cv, father);
+							btnNext.setEnabled(true);
+						}
+					}
+					else if(jcb2.isSelected()){
+						if(commoditybl.findCommodity(Integer.parseInt(key.getText())).size() == 0){
+							JOptionPane.showMessageDialog(ik, "不存在！");
+						}
+						else{
+							JOptionPane.showMessageDialog(ik, "查找成功！");
+							commodityList = commoditybl.findCommodity(Integer.parseInt(key.getText()));
+							count = 0;
+							CommodityVO cv = commodityList.get(count);
+							CategoryVO father = commoditybl.getFather(cv);
+     						sm.selectCommodity(cv, father);
+							btnNext.setEnabled(true);
+						}
+					}
+				}
+			}
+		});
+		
+		btnNext = new JButton("继续查找");
+		btnNext.setEnabled(false);
+		btnNext.setLocation(200, 150);
+		btnNext.setSize(100, 30);
+		this.add(btnNext);
+		btnNext.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+//				CommodityBLService commoditybl = CommodityBL.getInstance();
+				if(commodityList.size() == 0){
+					return;
+				}
+				count = (count + 1) % commodityList.size();
+				if(commodityList.size() == 0){
+					return;
+				}
+				CommodityVO cv = commodityList.get(count);
+				CategoryVO father = commoditybl.getFather(cv);
+				sm.selectCommodity(cv, father);
+				if(count == 0){
+					JOptionPane.showMessageDialog(ik, "已无符合商品！");
+				}
+			}
+		});
+		
+		btnCancel = new JButton("取消");
+		btnCancel.setLocation(350, 150);
+		btnCancel.setSize(100, 30);
+		this.add(btnCancel);
+		btnCancel.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				ik.dispose();
+			}
+		});
+		
+		this.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e){
+				ik.dispose();
+			}
+		});
+		
+		this.setVisible(true);
+	}
+    
+}

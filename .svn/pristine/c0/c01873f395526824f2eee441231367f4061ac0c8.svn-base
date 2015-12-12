@@ -1,0 +1,48 @@
+package stockManage;
+
+import vo.stockManage.CategoryVO;
+import vo.stockManage.CommodityVO;
+import businesslogic.stockManage.CommodityBL;
+import businesslogicservice.stockManage.CategoryBLService;
+import businesslogicservice.stockManage.CommodityBLService;
+
+public class CategoryBLService_Driver {
+	public void drive(CategoryBLService category){
+		@SuppressWarnings("unused")
+//		CommodityBLService cbs = new CommodityBL();
+		CategoryVO father = new CategoryVO();
+		father.id = "0";
+		CategoryVO child = new CategoryVO("日光灯类");
+		if(category.addCategory(child, father)){
+			System.out.println("添加成功");
+		}
+		else{
+			System.out.println("添加失败");
+		}
+		
+/*		if(category.addCategory(child, father)){
+			System.out.println("添加成功");
+		}
+		else{
+			System.out.println("添加失败");
+		}
+		
+		CategoryVO father1 = new CategoryVO();
+		father1.id = "0-0";
+		if(category.addCategory(child, father)){
+			System.out.println("添加成功");
+		}
+		else{
+			System.out.println("添加失败");
+		}*/
+		
+		CategoryVO child1 = new CategoryVO("日光灯类");
+		if(category.deleteCategory(child1, father)){
+			System.out.println("删除成功");
+		}
+		else{
+			System.out.println("删除失败");
+		}
+	}
+}
+

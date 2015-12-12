@@ -1,0 +1,180 @@
+package data.stockManage;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
+import dataservice.stockManage.StockOverflowDataService;
+import po.stockManage.StockOverflowPO;
+
+public class StockOverflowData extends UnicastRemoteObject implements StockOverflowDataService{
+	private static final long serialVersionUID = -8868676826752697887L;
+	private static ArrayList<StockOverflowPO> stockoverflowList;
+	private static StockOverflowData sofd = null;
+	
+	private StockOverflowData()throws RemoteException{
+		stockoverflowList = new ArrayList<StockOverflowPO>();
+		readFromFile();
+	}
+	
+	public ArrayList<StockOverflowPO> getStockOverflow(){
+		return stockoverflowList;
+	}
+	
+	public static StockOverflowData getInstance()throws RemoteException{
+		if(sofd == null){
+			sofd = new StockOverflowData();
+		}
+		return sofd;
+	}
+	
+	public boolean add(StockOverflowPO sofp){
+		if(sofp == null){
+			return false;
+		}
+		updateId(sofp);
+		stockoverflowList.add(sofp);
+		writeToFile();
+		return true;
+	}
+	
+	public boolean setApproval(StockOverflowPO sofp,int approval){
+		if(sofp == null){
+			return false;
+		}
+		if(approval < 1 || approval > 3){
+			return false;
+		}
+		
+		sofp.setApproval(approval);
+		return true;
+	}
+	
+	public void update(StockOverflowPO sofp){
+		for(StockOverflowPO sp : getStockOverflow()){
+			if(sp.getId().equals(sofp.getId())){
+				stockoverflowList.add(stockoverflowList.indexOf(sp),sofp);
+				stockoverflowList.remove(sp);
+				writeToFile();
+				break;
+			}
+		}
+	}
+	
+	public void write(StockOverflowPO sofp,PrintWriter pw){
+		pw.println("<StockOverflowstart>:");
+		pw.println("<StockOverflowid>:"+ sofp.getId());
+		pw.println("<StockOverflowname>:" + sofp.getName());
+		pw.println("<StockOverflowmodel>:" + sofp.getModel());
+		pw.println("<StockOverflowovernumber>:" + sofp.getOverNumber());
+		pw.println("<StockOverflowApproval>:" + sofp.getApproval());
+		pw.println("<StockOverflowTime>:" + sofp.getTime());
+		pw.println("<StockOverflowend>");
+	}
+	
+	public void readFromFile(){
+		try{
+			File file=new File("stockOverflow.txt");
+			stockoverflowList.clear();
+	        if(!file.exists()){
+	        	file.createNewFile();
+	        	return;
+	        }
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+	        String str1 = null;
+	        StockOverflowPO sofp = null;
+	        str1 = br.readLine();
+	        while(str1 != null){
+	        	int i1 = str1.indexOf("<");
+	        	int i2 = str1.indexOf(">");
+	        	if(i1 < 0 || i2 < 0){
+	        		break;
+	        	}
+	        	String str2 = str1.substring(i1 + 1, i2);
+	        	String str3 = null;
+	        	if(str1.length() > i2 + 2){
+	        		str3 = str1.substring(i2 + 2);
+	        	}
+	        	if(str2.equals("StockOverflowstart")){
+	        		sofp = new StockOverflowPO();
+	        	}
+	        	else if(str2.equals("StockOverflowend")){
+	        		stockoverflowList.add(sofp);
+	        	}
+	        	else if(str2.equals("StockOverflowid")){
+	        		if(sofp != null){
+	        			sofp.setId(new String(str3));
+	        		}
+	        	}
+	        	else if(str2.equals("StockOverflowname")){
+	        		if(sofp != null){
+	        			sofp.setName(new String(str3));
+	        		}
+	        	}
+	        	else if(str2.equals("StockOverflowmodel")){
+	        		sofp.setModel(new String(str3));
+	        	}
+	        	else if(str2.equals("StockOverflowovernumber")){
+	        		sofp.setOverNumber(Integer.parseInt(str3));
+	        	}
+	        	else if(str2.equals("StockOverflowApproval")){
+	        		if(sofp != null){
+	        			sofp.setApproval(Integer.parseInt(str3));
+	        		}
+	        	}
+	        	else if(str2.equals("StockOverflowTime")){
+	        		sofp.setTime(new String(str3));
+	        	}
+	        	str1 = br.readLine();
+	        }
+		 
+	        br.close();
+	    }
+	    catch (IOException e){
+	    	e.printStackTrace();
+	    }
+	}
+	
+	public void writeToFile(){
+		try{
+			File file = new File("stockOverflow.txt");
+	        if(!file.exists()){
+	        	file.createNewFile();
+	        	stockoverflowList.clear();
+	        	return;
+	        }
+	        BufferedWriter bw = null;
+			
+			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
+			PrintWriter pw = new PrintWriter(bw);
+			
+			for(StockOverflowPO sofp : stockoverflowList){
+				write(sofp, pw);
+			}
+	        pw.close();  
+	        
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateId(StockOverflowPO sofp){
+		if(getStockOverflow().size() == 0){
+			sofp.setId("BYD-" + sofp.getTime() + "-" + "00000");
+		}
+		else{
+			sofp.setId("BYD-" + sofp.getTime() + "-" + String.format("%05d",getStockOverflow().size()));
+		}
+	}
+	
+}

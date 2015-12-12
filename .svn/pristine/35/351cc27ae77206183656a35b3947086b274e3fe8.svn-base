@@ -1,0 +1,8 @@
+package businesslogicservice.stockManage;
+
+import vo.stockManage.PresentVO;
+
+public interface PresentBLService {
+	public boolean add(PresentVO pv);
+	
+}

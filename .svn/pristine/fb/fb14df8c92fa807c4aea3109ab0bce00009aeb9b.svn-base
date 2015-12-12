@@ -1,0 +1,46 @@
+package businesslogic;
+
+import java.rmi.Naming;
+import java.util.ArrayList;
+
+import po.LogPO;
+import vo.LogVO;
+import businesslogicservice.LogBLService;
+import dataservice.LogDataService;
+
+public class LogBL implements LogBLService{
+	private LogDataService data=null;
+	
+	public LogBL(){
+		try {
+			data = (LogDataService)Naming.lookup("rmi://" + IP.ip + "/logdata");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+	public void addLog(LogVO logvo){
+		LogPO newlpo=new LogPO(logvo.date,logvo.time,logvo.user,logvo.action);
+		data.addLog(newlpo);
+	}
+
+	@Override
+	public ArrayList<LogVO> showLog() {
+		ArrayList<LogPO> list=new ArrayList<LogPO>();
+		list=data.getAllLog();
+		ArrayList<LogVO> newList=new ArrayList<LogVO>();
+		for(LogPO lpo:list){
+			newList.add(this.logPOtoVO(lpo));
+		}
+		return newList;
+	}
+	
+	private LogVO logPOtoVO(LogPO lpo){
+		LogVO lvo=new LogVO();
+		lvo.action=lpo.getAction();
+		lvo.date=lpo.getDate();
+		lvo.time=lpo.getTime();
+		lvo.user=lpo.getUser();
+		return lvo;
+	}
+
+}

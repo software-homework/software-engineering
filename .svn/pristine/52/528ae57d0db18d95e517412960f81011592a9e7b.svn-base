@@ -1,0 +1,23 @@
+package businesslogicservice.stockManage;
+
+import vo.stockManage.CategoryVO;
+import vo.stockManage.CommodityVO;
+
+public interface CategoryBLService {
+	public CategoryVO getRoot();
+	
+	public boolean addCategory(CategoryVO category,CategoryVO father);
+	
+	public boolean addCategory(CategoryVO category);
+	
+	public boolean deleteCategory(CategoryVO category,CategoryVO father);
+	
+	public boolean updateCategory(CategoryVO cp,CategoryVO cv,CategoryVO father);
+	
+	public CategoryVO findCategory(String id);
+	
+	public CategoryVO getFather(CategoryVO category);
+	
+	public CategoryVO getFather(CommodityVO commodity);
+	
+}
