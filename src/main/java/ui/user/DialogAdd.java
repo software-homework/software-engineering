@@ -106,7 +106,6 @@ public class DialogAdd extends JDialog implements ActionListener {
 			String type = (String) typeBC.getSelectedItem();
 			String name = nameTF.getText().trim();
 			String pass = String.copyValueOf(jPasswordField.getPassword());
-			String permission = (String) permissionBC.getSelectedItem();
 			if (name.trim().length() == 0 || pass.trim().length() == 0)
 				JOptionPane.showMessageDialog(null, "输入信息不能为空!", null, 0);
 			else {
