@@ -23,7 +23,7 @@ import businesslogicservice.manager.PromotionBLService;
  */
 
 /*
- * 组合商品降价策略主panel
+ * 组合快递降价策略主panel
  */
 @SuppressWarnings("serial")
 public class BargainPane extends PromotionPane{
@@ -40,7 +40,7 @@ public class BargainPane extends PromotionPane{
 	public void refresh() {
 		bl = new PromotionBL();
 		ArrayList<BargainVO> list = bl.shoBargain();//取得数据
-		columnName = new String[]{"", "日期", "组合商品名称", "降价额度"};
+		columnName = new String[]{"", "日期", "组合快递名称", "降价额度"};
 		data = new Object[list.size()][4];
 		for(int i = 0; i < list.size(); i++) {
 			data[i][0] = Boolean.FALSE;
@@ -54,7 +54,7 @@ public class BargainPane extends PromotionPane{
 	private class AddListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//状态栏设置
-			frame.setStatusBar("添加组合商品降价策略");
+			frame.setStatusBar("添加组合快递降价策略");
 			
 			new AddBargainDialog(BargainPane.this);
 		}
@@ -79,7 +79,7 @@ public class BargainPane extends PromotionPane{
 					//状态栏设置
 					frame.setStatusBar("删除成功");
 					LogBLService logBLService = new LogBL();
-					logBLService.addLog(new LogVO(frame.getUserName(), "删除组合商品促销策略"));
+					logBLService.addLog(new LogVO(frame.getUserName(), "删除组合快递促销策略"));
 				}else {
 					JOptionPane.showMessageDialog(null, "删除失败！", "错误", JOptionPane.ERROR_MESSAGE);
 					//刷新表格

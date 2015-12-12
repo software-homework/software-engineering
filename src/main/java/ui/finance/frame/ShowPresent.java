@@ -46,7 +46,7 @@ public class ShowPresent extends JDialog{
 			commodity[i][1] = commodityList.get(i).split(";")[1];
 			commodity[i][2] = commodityList.get(i).split(";")[2];
 		}
-		jt1 = new JTable(commodity, new String[]{"商品名", "型号", "赠送数量"});
+		jt1 = new JTable(commodity, new String[]{"快递名", "型号", "赠送数量"});
 		jsp1 = new JScrollPane(jt1);
 		//add to jp
 		jp = new JPanel();

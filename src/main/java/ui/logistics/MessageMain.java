@@ -43,7 +43,7 @@ public class MessageMain extends JDialog{
 		btnEdit = new JButton("确认");
 		btnEdit.setEnabled(false);
 		btnCancel = new JButton("取消");
-		String[] columnTitle = {"","消息类型","商品名称","商品型号","商品数量","客户","发送时间"};
+		String[] columnTitle = {"","消息类型","快递名称","快递型号","快递数量","客户","发送时间"};
 		table = new JTable(new TableModel(data,columnTitle));
 		table.getColumnModel().getColumn(0).setMaxWidth(30);
 		panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));

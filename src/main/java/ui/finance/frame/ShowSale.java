@@ -73,7 +73,7 @@ public class ShowSale  extends JDialog implements ActionListener{
 			commodity[i][4] = Double.toString(temp.get(i).priceIn);
 			commodity[i][5] = Double.toString(temp.get(i).priceOut);
 		}
-		jt2 = new JTable(commodity, new String[]{"商品名", "型号", "数量", "仓库", "进价", "售价"});
+		jt2 = new JTable(commodity, new String[]{"快递名", "型号", "数量", "仓库", "进价", "售价"});
 		jsp2 = new JScrollPane(jt2);
 		jp = new JPanel();
 		jp.setLayout(new GridLayout(2,1));

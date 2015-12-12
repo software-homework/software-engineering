@@ -46,9 +46,9 @@ public class ShowStockLoss extends ShowApproval{
 		
 		label1 = new JLabel("编号：", JLabel.RIGHT);
 		label2 = new JLabel(vo.id, JLabel.LEFT);
-		label3 = new JLabel("商品名称：", JLabel.RIGHT);
+		label3 = new JLabel("快递名称：", JLabel.RIGHT);
 		label4 = new JLabel(vo.name, JLabel.LEFT);
-		label5 = new JLabel("商品型号：", JLabel.RIGHT);
+		label5 = new JLabel("快递型号：", JLabel.RIGHT);
 		label6 = new JLabel(vo.model, JLabel.LEFT);
 		label7 = new JLabel("报损数量：", JLabel.RIGHT);
 		label8 = new JLabel(""+vo.lossNumber, JLabel.LEFT);

@@ -62,7 +62,7 @@ public class ShowPre extends Show{
 			data[i][1] = temp[1];
 			data[i][2] = temp[2];
 		}
-		columnName = new String[]{"商品名称", "商品型号", "数量"};
+		columnName = new String[]{"快递名称", "快递型号", "数量"};
 		table = new JTable(new TableModel(data, columnName) {
 			public boolean isCellEditable(int row, int column) {
 				return false;

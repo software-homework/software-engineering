@@ -36,7 +36,7 @@ import businesslogicservice.manager.PromotionBLService;
  */
 
 /*
- * 组合商品降价策略dialog
+ * 组合快递降价策略dialog
  */
 @SuppressWarnings("serial")
 public class AddBargainDialog extends AddPromotionDialog{
@@ -71,7 +71,7 @@ public class AddBargainDialog extends AddPromotionDialog{
 		pane3 = new JPanel();
 		pane3.setLayout(new BoxLayout(pane3, BoxLayout.Y_AXIS));
 		
-		label4 = new JLabel("组合商品：", JLabel.LEFT);
+		label4 = new JLabel("组合快递：", JLabel.LEFT);
 		label4.setPreferredSize(new Dimension(100, 100));
 		
 		get = new CommodityBL();
@@ -81,7 +81,7 @@ public class AddBargainDialog extends AddPromotionDialog{
 			data[i][0] = Boolean.FALSE;
 			data[i][1] = list.get(i).commodityname;
 		}
-		columnName = new String[]{"", "商品名称"};
+		columnName = new String[]{"", "快递名称"};
 		table = new JTable(new TableModel(data, columnName));
 		table.getColumnModel().getColumn(0).setMaxWidth(30);//设置第一列宽度
 		JScrollPane sp = new JScrollPane(table);
@@ -104,7 +104,7 @@ public class AddBargainDialog extends AddPromotionDialog{
 			if(isDateRight(text1.getText(), text2.getText())) {
 				if(isNumberRight(text3.getText())) {
 					if (hasGoods()) {
-						//生成商品信息string
+						//生成快递信息string
 						String goodsName = getInfo();
 						
 						bl = new PromotionBL();
@@ -118,14 +118,14 @@ public class AddBargainDialog extends AddPromotionDialog{
 							//状态栏设置
 							pane.frame.setStatusBar("添加成功");
 							LogBLService logBLService = new LogBL();
-							logBLService.addLog(new LogVO(pane.frame.getUserName(), "添加组合商品降价策略"));
+							logBLService.addLog(new LogVO(pane.frame.getUserName(), "添加组合快递降价策略"));
 						}else {
 							JOptionPane.showMessageDialog(null, "添加失败！", "错误", JOptionPane.ERROR_MESSAGE);
 							//状态栏设置
 							pane.frame.setStatusBar("添加失败");
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "请勾选商品！", "警告", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "请勾选快递！", "警告", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 			}

@@ -29,7 +29,7 @@ public class CourierPanel extends JPanel{
 	JButton addSales;
 	JButton addSalesR;
 	JButton refresh;
-	String[] columnTitle={"单据编号","供应商","仓库","操作员","商品","折让前总额","折让后总额","备注","审批情况"};
+	String[] columnTitle={"单据编号","供应商","仓库","操作员","快递","折让前总额","折让后总额","备注","审批情况"};
 	String[][] data;
 	JPanel panel;
 	int selectrow;

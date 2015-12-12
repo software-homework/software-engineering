@@ -91,7 +91,7 @@ public class AddCustPromDialog extends AddPromotionDialog{
 			data[i][0] = Boolean.FALSE;
 			data[i][1] = list.get(i).commodityname;
 		}
-		columnName = new String[]{"", "商品名称"};
+		columnName = new String[]{"", "快递名称"};
 		table = new JTable(new TableModel(data, columnName));
 		table.getColumnModel().getColumn(0).setMaxWidth(30);//设置第一列宽度
 		JScrollPane sp = new JScrollPane(table);
@@ -113,7 +113,7 @@ public class AddCustPromDialog extends AddPromotionDialog{
 		public void actionPerformed(ActionEvent arg0) {
 			if(isDateRight(text1.getText(), text2.getText())) {
 				if(isNumberRight(text3.getText()) && isNumberRight(text4.getText())) {
-					//生成商品信息string
+					//生成快递信息string
 					String goodsName = getInfo();
 					
 					bl = new PromotionBL();

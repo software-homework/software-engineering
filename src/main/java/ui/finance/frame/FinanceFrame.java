@@ -196,7 +196,7 @@ public class FinanceFrame extends JFrame implements ActionListener, MouseListene
 			}
 		} else if (data2 != null) {
 			// 销售明细
-			columnNames = new String[] { "时间", "商品名", "型号", "数量", "单价", "总额" };
+			columnNames = new String[] { "时间", "快递名", "型号", "数量", "单价", "总额" };
 			data = data2;
 		} else if (data3 != null) {
 			// 经营历程
@@ -205,7 +205,7 @@ public class FinanceFrame extends JFrame implements ActionListener, MouseListene
 		} else if (data4 != null) {
 			// 经营情况
 			data = data4;
-			columnNames = new String[] { "销售收入", "商品类收入", "折让", "折让后总收入", "销售成本", "商品类支出", "总支出", "利润" };
+			columnNames = new String[] { "销售收入", "快递类收入", "折让", "折让后总收入", "销售成本", "快递类支出", "总支出", "利润" };
 		} else if (data5 != null) {
 			columnNames = new String[] { "建账时间", "账本类型" };
 			data = data5;
@@ -292,7 +292,7 @@ public class FinanceFrame extends JFrame implements ActionListener, MouseListene
 		} else if (arg0.getSource() == this.cashExpensesMennuItem) {
 			CashExpensesDialog cashExpensesDialog = new CashExpensesDialog(this, "现金费用单", true, this.userVO);
 		} else if (arg0.getSource() == this.detailMennuItem) {
-			new FilterDialog(this, "筛选", true, new String[] { "时间(yyyyMMdd):", "商品名:", "客户:", "业务员:", "仓库:" });
+			new FilterDialog(this, "筛选", true, new String[] { "时间(yyyyMMdd):", "快递名:", "客户:", "业务员:", "仓库:" });
 		} else if (arg0.getSource() == this.historyMennuItem) {
 			new FilterDialog2(this, "筛选", true, new String[] { "时间(yyyyMMdd):", "单据类型:", "客户:", "业务员:", "仓库:" });
 		} else if (arg0.getSource() == this.conditionMennuItem) {

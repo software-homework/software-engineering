@@ -125,7 +125,7 @@ public class LogisticsMain extends JFrame {
 										});
 										jpm.add(jmi2);
 										
-										JMenuItem jmi1 = new JMenuItem("添加商品");
+										JMenuItem jmi1 = new JMenuItem("添加快递");
 										jmi1.addMouseListener(new MouseAdapter(){
 											public void mouseReleased(MouseEvent e){
 												new AddCommodity(LogisticsMain.this);
@@ -145,7 +145,7 @@ public class LogisticsMain extends JFrame {
 										
 									}
 									else{
-										JMenuItem jmi3 = new JMenuItem("添加商品");
+										JMenuItem jmi3 = new JMenuItem("添加快递");
 										jmi3.addMouseListener(new MouseAdapter(){
 											public void mouseReleased(MouseEvent e){
 												new AddCommodity(LogisticsMain.this);
@@ -222,7 +222,7 @@ public class LogisticsMain extends JFrame {
 						JPopupMenu jpm = new JPopupMenu();
 						deleteCommodity(jpm);
 						
-						JMenuItem jmi = new JMenuItem("修改商品");
+						JMenuItem jmi = new JMenuItem("修改快递");
 						jmi.addMouseListener(new MouseAdapter(){
 							public void mouseReleased(MouseEvent e){
 								new UpdateCommodity(LogisticsMain.this);
@@ -262,7 +262,7 @@ public class LogisticsMain extends JFrame {
 		mb = new JMenuBar();
 		menu1 = new JMenu("系统");
 		menu2 = new JMenu("操作");
-		item1 = new JMenuItem("查找商品");
+		item1 = new JMenuItem("查找快递");
 		item2 = new JMenuItem("库存查看");
 		item3 = new JMenuItem("库存盘点");
 		item4 = new JMenuItem("库存赠送");
@@ -364,16 +364,16 @@ public class LogisticsMain extends JFrame {
 	}
 	
 	public void deleteCommodity(JPopupMenu jpm){
-		JMenuItem jmi = new JMenuItem("删除商品");
+		JMenuItem jmi = new JMenuItem("删除快递");
 		jmi.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
 				if(table.getSelectedRowCount() > 0){
-					if(JOptionPane.showConfirmDialog(sm, "你确定要删除商品？") == JOptionPane.OK_OPTION){
+					if(JOptionPane.showConfirmDialog(sm, "你确定要删除快递？") == JOptionPane.OK_OPTION){
 						if(commoditybl.deleteCommodity(commoditybl.getCommodity((String)table.getValueAt(table.getSelectedRow(), 0)), cv)){
 //							JOptionPane.showMessageDialog(sm, "删除成功！");
 							sm.setText("删除成功！");
 							LogBLService lbs = new LogBL();
-							lbs.addLog(new LogVO(uvo.name,"删除商品"));
+							lbs.addLog(new LogVO(uvo.name,"删除快递"));
 							update();
 						}
 						else{
@@ -392,13 +392,13 @@ public class LogisticsMain extends JFrame {
 			public void mouseReleased(MouseEvent e){
 				if(cv != null){
 					if(cv.categoryList.size() == 0 && cv.commodityList.size() == 0){
-						if(JOptionPane.showConfirmDialog(sm, "你确定要删除这个商品分类？") == JOptionPane.OK_OPTION){
+						if(JOptionPane.showConfirmDialog(sm, "你确定要删除这个快递分类？") == JOptionPane.OK_OPTION){
 							if(categorybl.deleteCategory(cv, father)){
 //								JOptionPane.showMessageDialog(sm, "删除成功！");
 								cv = null;
 								sm.setText("删除成功！");
 								LogBLService lbs = new LogBL();
-								lbs.addLog(new LogVO(uvo.name,"删除商品分类"));
+								lbs.addLog(new LogVO(uvo.name,"删除快递分类"));
 								update();
 							}
 						    

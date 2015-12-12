@@ -8,7 +8,7 @@ import javax.swing.table.TableModel;
 import vo.logistics.LogisticsOverflowVO;
 
 public class LogisticsOverflowTable implements TableModel{
-	public String column[] = new String[]{"单据编号","商品名称","商品型号","报溢数量","制定时间","审批状态"};
+	public String column[] = new String[]{"单据编号","快递名称","快递型号","报溢数量","制定时间","审批状态"};
 	public CheckLogisticsOverflow csof;
 	public ArrayList<LogisticsOverflowVO> list;
 	

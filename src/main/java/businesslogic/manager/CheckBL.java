@@ -88,7 +88,7 @@ public class CheckBL implements CheckBLService, GetCheckBL{
 			}
 		}
 		temp[0][0] = money;
-		//商品类收入
+		//快递类收入
 		money = 0;
 		for (LogisticsOverflowVO i : stockOverflowAL) {
 			String[] date = i.id.split("-");
@@ -140,7 +140,7 @@ public class CheckBL implements CheckBLService, GetCheckBL{
 			}
 		}
 		temp[0][4] = money;
-		//商品类支出
+		//快递类支出
 		money = 0;
 		//报损
 		for (LogisticsLossVO i : stockLossAL) {

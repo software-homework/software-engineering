@@ -40,7 +40,7 @@ public class SearchDetail extends SearchDialog{
 		
 		label1 = new JLabel("起始日期(yyyyMMdd)：", JLabel.RIGHT);
 		label2 = new JLabel("结束日期(yyyyMMdd)：", JLabel.RIGHT);
-		label3 = new JLabel("商品名：", JLabel.RIGHT);
+		label3 = new JLabel("快递名：", JLabel.RIGHT);
 		label4 = new JLabel("客户：", JLabel.RIGHT);
 		label5 = new JLabel("业务员：", JLabel.RIGHT);
 		label6 = new JLabel("仓库：", JLabel.RIGHT);

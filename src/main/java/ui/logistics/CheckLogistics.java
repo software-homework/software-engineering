@@ -60,7 +60,7 @@ public class CheckLogistics extends JDialog{
 			CellView cellView = new CellView();  
 			cellView.setAutosize(true); 
 			
-			String column[] = new String[]{"行号","商品名称", "型号", "库存数量", "库存均价", "批次", "批号", "出厂日期"};
+			String column[] = new String[]{"行号","快递名称", "型号", "库存数量", "库存均价", "批次", "批号", "出厂日期"};
 			for(int i = 0;i < column.length;i ++){
 				Label excelTitle = new Label(i, 0, column[i], titleFormat);
 				wsheet.addCell(excelTitle);

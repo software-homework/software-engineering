@@ -26,7 +26,7 @@ public class ImportPanel extends JPanel{
 
 	JTable importtable;
 	JScrollPane iscroll;
-	String[] columnTitle={"单据编号","供应商","仓库","操作员","商品","总额","备注","审批情况"};
+	String[] columnTitle={"单据编号","供应商","仓库","操作员","快递","总额","备注","审批情况"};
 	String[][] data;
 	JButton addImport;
 	JButton addImportR;

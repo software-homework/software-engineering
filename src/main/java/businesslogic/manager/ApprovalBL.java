@@ -394,7 +394,7 @@ public class ApprovalBL implements ApprovalBLService{
 				System.out.println("日期错误");
 			}
 		}
-		//组合商品
+		//组合快递
 		boolean judge = false;
 		String name = "";
 		for (CommodityVO i : temp.salesList) {

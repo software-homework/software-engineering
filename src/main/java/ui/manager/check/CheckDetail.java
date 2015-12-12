@@ -29,7 +29,7 @@ public class CheckDetail extends Check{
 	//------------------------------------------------------------------------
 	public CheckDetail(ManagerFrame frame) {
 		super(frame);
-		columnName = new String[]{"时间", "商品名", "型号", "数量", "单价", "总额"};
+		columnName = new String[]{"时间", "快递名", "型号", "数量", "单价", "总额"};
 		//监听
 		search.addActionListener(new SearchListener());
 		output.addActionListener(new OutputListener());
@@ -46,7 +46,7 @@ public class CheckDetail extends Check{
 		public void actionPerformed(ActionEvent e) {
 			bl = new CheckBL();
 			//状态栏设置
-			if(bl.output("salesdetail.xls", CheckDetail.this.data, new String[]{"销售明细表", "时间", "商品名", "型号", "数量", "单价", "总额"})) {
+			if(bl.output("salesdetail.xls", CheckDetail.this.data, new String[]{"销售明细表", "时间", "快递名", "型号", "数量", "单价", "总额"})) {
 				JOptionPane.showMessageDialog(null, "导出表格成功！", "信息", JOptionPane.INFORMATION_MESSAGE);
 				frame.setStatusBar("导出表格成功");
 				LogBLService logBLService = new LogBL();

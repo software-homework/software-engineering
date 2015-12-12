@@ -8,7 +8,7 @@ import javax.swing.table.TableModel;
 import vo.logistics.PresentVO;
 
 public class PresentTable implements TableModel{
-	public String column[] = new String[]{"单据编号","赠送商品及数量","制定时间","审批状态"};
+	public String column[] = new String[]{"单据编号","赠送快递及数量","制定时间","审批状态"};
 	public CheckPresent cp;
 	public ArrayList<PresentVO> list;
 	

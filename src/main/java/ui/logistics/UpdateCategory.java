@@ -67,7 +67,7 @@ public class UpdateCategory extends JDialog{
 //						JOptionPane.showMessageDialog(uc, "修改成功！");
 						sm.setText("修改成功！");
 						LogBLService lbs = new LogBL();
-						lbs.addLog(new LogVO(sm.uvo.name,"修改商品分类"));
+						lbs.addLog(new LogVO(sm.uvo.name,"修改快递分类"));
 						sm.update();
 						uc.dispose();
 					}

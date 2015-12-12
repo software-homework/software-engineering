@@ -59,7 +59,7 @@ public class ShowImp extends Show{
 		label10 = new JLabel(""+vo.total, JLabel.LEFT);
 		label11 = new JLabel("备注：", JLabel.RIGHT);
 		label12 = new JLabel(vo.remakes, JLabel.LEFT);
-		label13 = new JLabel("商品信息：", JLabel.RIGHT);
+		label13 = new JLabel("快递信息：", JLabel.RIGHT);
 		
 		pane2.add(label1);
 		pane2.add(label2);
@@ -83,7 +83,7 @@ public class ShowImp extends Show{
 			data[i][1] = vo.importList.get(i).number;
 			data[i][2] = vo.importList.get(i).priceIn;
 		}
-		columnName = new String[]{"商品名称", "数量", "单价"};
+		columnName = new String[]{"快递名称", "数量", "单价"};
 		table = new JTable(new TableModel(data, columnName) {
 			public boolean isCellEditable(int row, int column) {
 				return false;

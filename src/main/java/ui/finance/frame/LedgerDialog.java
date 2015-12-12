@@ -83,7 +83,7 @@ public class LedgerDialog extends JDialog{
 		else
 			stockVOs = getCommodityBL.merge(ledgerVOs.get(index).time, this.ledgerVO.time);
 		
-		Object[] column = new Object[]{"商品名称", "商品型号", "平均进价", "平均售价"};
+		Object[] column = new Object[]{"快递名称", "快递型号", "平均进价", "平均售价"};
 		Object[][] data = new Object[stockVOs.size()][4];
 		
 		DecimalFormat df = new DecimalFormat("#.00");

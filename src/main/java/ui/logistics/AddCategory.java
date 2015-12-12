@@ -70,7 +70,7 @@ public class AddCategory extends JDialog{
 						if(cbs.addCategory(cv1,sm.cv)){
 							sm.setText("添加成功!");
 							LogBLService lbs = new LogBL();
-							lbs.addLog(new LogVO(sm.uvo.name,"添加商品分类"));
+							lbs.addLog(new LogVO(sm.uvo.name,"添加快递分类"));
 							sm.update();
 							ac.dispose();
 						}

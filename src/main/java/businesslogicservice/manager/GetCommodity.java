@@ -12,7 +12,7 @@ import vo.logistics.CommodityVO;
  */
 
 /*
- * 获得商品信息接口
+ * 获得快递信息接口
  */
 public interface GetCommodity {
 	public ArrayList<CommodityVO> getCommodity();

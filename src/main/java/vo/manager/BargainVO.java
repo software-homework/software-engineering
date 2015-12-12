@@ -8,12 +8,12 @@ package vo.manager;
  */
 
 /*
- * 组合商品降价策略vo
+ * 组合快递降价策略vo
  */
 public class BargainVO {
 	public String startTime;//起始日期
 	public String endTime;//结束日期
-	public String goodsName;//组合商品名称
+	public String goodsName;//组合快递名称
 	public double promotion;//降价额度
 	//-------------------------------------------------------------
 	public BargainVO(String startTime, String endTime, String goodsName, double promotion) {

@@ -29,7 +29,7 @@ public class CheckCondition extends Check{
 	//--------------------------------------------------------------------------
 	public CheckCondition(ManagerFrame frame) {
 		super(frame);
-		columnName = new String[]{"销售收入", "商品类收入", "折让", "折让后总收入", "销售成本", "商品类支出", "总支出", "利润"};
+		columnName = new String[]{"销售收入", "快递类收入", "折让", "折让后总收入", "销售成本", "快递类支出", "总支出", "利润"};
 		//监听
 		search.addActionListener(new SearchListener());
 		output.addActionListener(new OutputListener());
@@ -46,7 +46,7 @@ public class CheckCondition extends Check{
 		public void actionPerformed(ActionEvent e) {
 			bl = new CheckBL();
 			//状态栏设置
-			if(bl.output("salescondition.xls", CheckCondition.this.data, new String[]{"经营情况表", "销售收入", "商品类收入", "折让", "折让后总收入", "销售成本", "商品类支出", "总支出", "利润"})) {
+			if(bl.output("salescondition.xls", CheckCondition.this.data, new String[]{"经营情况表", "销售收入", "快递类收入", "折让", "折让后总收入", "销售成本", "快递类支出", "总支出", "利润"})) {
 				JOptionPane.showMessageDialog(null, "导出表格成功！", "信息", JOptionPane.INFORMATION_MESSAGE);
 				frame.setStatusBar("导出表格成功");
 				LogBLService logBLService = new LogBL();

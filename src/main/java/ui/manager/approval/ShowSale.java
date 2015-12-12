@@ -71,7 +71,7 @@ public class ShowSale extends ShowApproval{
 		label14 = new JLabel(""+vo.posttotal, JLabel.LEFT);
 		label15 = new JLabel("备注：", JLabel.RIGHT);
 		label16 = new JLabel(vo.remakes, JLabel.LEFT);
-		label17 = new JLabel("商品信息：", JLabel.RIGHT);
+		label17 = new JLabel("快递信息：", JLabel.RIGHT);
 		
 		pane2.add(label1);
 		pane2.add(label2);
@@ -101,7 +101,7 @@ public class ShowSale extends ShowApproval{
 			data[i][1] = vo.salesList.get(i).number;
 			data[i][2] = vo.salesList.get(i).priceOut;
 		}
-		columnName = new String[]{"商品名称", "数量", "单价"};
+		columnName = new String[]{"快递名称", "数量", "单价"};
 		table = new JTable(new TableModel(data, columnName) {
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -126,7 +126,7 @@ public class ShowSale extends ShowApproval{
 				text2.setEnabled(true);
 				remove(table);
 				//表格可编辑
-				columnName = new String[]{"商品名称", "数量（可修改）", "单价（可修改）"};
+				columnName = new String[]{"快递名称", "数量（可修改）", "单价（可修改）"};
 				table = new JTable(new TableModel(data, columnName) {
 					public boolean isCellEditable(int row, int column) {
 						return (column != 0);//设置可编辑

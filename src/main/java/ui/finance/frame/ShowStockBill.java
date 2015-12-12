@@ -35,7 +35,7 @@ public class ShowStockBill extends JDialog{
 	    this.setBounds((screenSize.width - frameWidth) / 2, (screenSize.height - frameHeight) / 3, frameWidth, frameHeight);
 		//
 		if(stockLossVO != null){
-			String[] s1 = new String[]{"编号：", "商品名：", "商品型号：", "报损数量："};
+			String[] s1 = new String[]{"编号：", "快递名：", "快递型号：", "报损数量："};
 			for(int i = 0; i < jl.length; i++){
 				jl[i] = new JLabel(s1[i]);
 				jl[i].setSize(100, 30);
@@ -47,7 +47,7 @@ public class ShowStockBill extends JDialog{
 			}
 		}
 		else if(stockOverflowVO != null){
-			String[] s1 = new String[]{"编号：", "商品名：", "商品型号：", "报溢数量："};
+			String[] s1 = new String[]{"编号：", "快递名：", "快递型号：", "报溢数量："};
 			for(int i = 0; i < jl.length; i++){
 				jl[i] = new JLabel(s1[i]);
 				jl[i].setSize(100, 30);

@@ -10,13 +10,13 @@ import java.io.*;
  */
 
 /*
- * 组合商品降价策略po
+ * 组合快递降价策略po
  */
 @SuppressWarnings("serial")
 public class BargainPO implements Serializable{
 	private String startTime;//起始日期
 	private String endTime;//结束日期
-	private String goodsName;//组合商品名称
+	private String goodsName;//组合快递名称
 	private double promotion;//降价额度
 	//------------------------------------------------------------
 	public BargainPO(String startTime, String endTime, String goodsName, double promotion) {

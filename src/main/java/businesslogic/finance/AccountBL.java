@@ -235,7 +235,7 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 				i--;
 			}
 		}
-		//选择符合条件的商品并添加到res
+		//选择符合条件的快递并添加到res
 		NumberFormat ddf=NumberFormat.getNumberInstance() ; 
 		ddf.setMaximumFractionDigits(2); 
 		for(int i = 0; i < list.size(); i++){

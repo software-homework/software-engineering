@@ -75,7 +75,7 @@ public class AddPromotionDialog extends JDialog{
 		this.getContentPane().add(pane1, BorderLayout.SOUTH);
 	}
 	//-----------------------------------------------------
-	//生成商品信息string
+	//生成快递信息string
 	public String getInfo() {
 		boolean judge = false;
 		String goodsName = "";
@@ -141,7 +141,7 @@ public class AddPromotionDialog extends JDialog{
 			}
 		}
 	}
-	//判断商品是否为空
+	//判断快递是否为空
 	public boolean hasGoods() {
 		for (int i = 0; i < data.length; i++) {
 			if (data[i][0] == Boolean.TRUE) {

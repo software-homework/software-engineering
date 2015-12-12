@@ -47,7 +47,7 @@ public class FindCommodity extends JDialog{
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setLayout(null);
 		this.setResizable(false);
-		this.setTitle("查找商品");
+		this.setTitle("查找快递");
 		this.setModal(true);
 		
 		label = new JLabel("关键字  ：");
@@ -91,7 +91,7 @@ public class FindCommodity extends JDialog{
 						else{
 							JOptionPane.showMessageDialog(ik, "查找成功！");
 							LogBLService lbs = new LogBL();
-							lbs.addLog(new LogVO(sm.uvo.name,"查找商品"));
+							lbs.addLog(new LogVO(sm.uvo.name,"查找快递"));
 							commodityList = commoditybl.findCommodity(key.getText());
 							count = 0;
 							CommodityVO cv = commodityList.get(count);
@@ -107,7 +107,7 @@ public class FindCommodity extends JDialog{
 						else{
 							JOptionPane.showMessageDialog(ik, "查找成功！");
 							LogBLService lbs = new LogBL();
-							lbs.addLog(new LogVO(sm.uvo.name,"查找商品"));
+							lbs.addLog(new LogVO(sm.uvo.name,"查找快递"));
 							commodityList = commoditybl.findCommodity(Integer.parseInt(key.getText()));
 							count = 0;
 							CommodityVO cv = commodityList.get(count);
@@ -139,7 +139,7 @@ public class FindCommodity extends JDialog{
 				CategoryVO father = commoditybl.getFather(cv);
 				sm.selectCommodity(cv, father);
 				if(count == 0){
-					JOptionPane.showMessageDialog(ik, "已无符合商品！");
+					JOptionPane.showMessageDialog(ik, "已无符合快递！");
 				}
 			}
 		});

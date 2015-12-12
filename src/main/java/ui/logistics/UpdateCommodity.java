@@ -42,15 +42,15 @@ public class UpdateCommodity extends JDialog{
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setLayout(null);
 		this.setResizable(false);
-		this.setTitle("更新商品");
+		this.setTitle("更新快递");
 		this.setModal(true);
 		
-		label1 = new JLabel("商品名称：");
+		label1 = new JLabel("快递名称：");
 		label1.setLocation(30, 30);
 		label1.setSize(100, 30);
 		this.add(label1);
 		
-		label2 = new JLabel("商品型号：");
+		label2 = new JLabel("快递型号：");
 		label2.setLocation(30, 90);
 		label2.setSize(100, 30);
 		this.add(label2);
@@ -117,7 +117,7 @@ public class UpdateCommodity extends JDialog{
 //								JOptionPane.showMessageDialog(uc, "修改成功！");
 								sm.setText("修改成功！");
 								LogBLService lbs = new LogBL();
-								lbs.addLog(new LogVO(sm.uvo.name,"修改商品"));
+								lbs.addLog(new LogVO(sm.uvo.name,"修改快递"));
 								sm.update();
 								uc.dispose();
 							}

@@ -91,7 +91,7 @@ public class ManagerFrame extends JFrame{
 		checkHistory = new JMenuItem("经营历程表");
 		checkCondition = new JMenuItem("经营情况表");
 		custProm = new JMenuItem("针对客户的促销策略");
-		bargain = new JMenuItem("组合商品降价策略");
+		bargain = new JMenuItem("组合快递降价策略");
 		totalProm = new JMenuItem("针对总价的促销策略");
 		
 		menuBar.add(system);
@@ -238,7 +238,7 @@ public class ManagerFrame extends JFrame{
 			splitPane.setRightComponent(pane);
 			splitPane.setDividerLocation(0.2);
 			//状态栏设置
-			statusBar.setText("制定组合商品降价策略");
+			statusBar.setText("制定组合快递降价策略");
 			
 			revalidate();
 		}
