@@ -33,7 +33,7 @@ public class ShowLogistics extends JDialog {
 		this.setLocation((int)(width - this.getWidth()) / 2,(int)(height - this.getHeight()) / 2);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
-		this.setTitle("库存查看列表");
+		this.setTitle("物流查看列表");
 		this.setModal(true);
 		
 		mb = new JMenuBar();

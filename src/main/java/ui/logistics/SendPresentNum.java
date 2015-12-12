@@ -41,7 +41,7 @@ public class SendPresentNum extends JDialog{
 		this.setLocation((int)(width - this.getWidth()) / 2,(int)(height - this.getHeight()) / 2);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
-		this.setTitle("库存赠送");
+		this.setTitle("物流赠送");
 		this.setModal(true);
 		
 		btnEdit = new JButton("确认");
@@ -51,7 +51,7 @@ public class SendPresentNum extends JDialog{
 		panel.add(btnCancel);
 		this.add(panel, BorderLayout.SOUTH);
 		
-		String[] columnTitle = {"赠送数量","编号","名称","型号","库存数量","默认进价","默认售价","最近进价","最近售价"};
+		String[] columnTitle = {"赠送数量","编号","名称","型号","物流数量","默认价格","默认折扣","最近价格","最近折扣"};
 		data = sp.newData;
 		table = new JTable(new TableModel(data,columnTitle){
 			public boolean isCellEditable(int row, int column) {
@@ -80,11 +80,11 @@ public class SendPresentNum extends JDialog{
 					if(pbs.add(pv)){
 						JOptionPane.showMessageDialog(spn, "制定赠送单成功！请等待总经理审批");
 						LogBLService lbs = new LogBL();
-						lbs.addLog(new LogVO(sm.uvo.name,"制定库存赠送单"));
+						lbs.addLog(new LogVO(sm.uvo.name,"制定物流赠送单"));
 						spn.dispose();
 					}
 					else{
-						JOptionPane.showMessageDialog(spn, "库存数量不足！");
+						JOptionPane.showMessageDialog(spn, "物流数量不足！");
 					}
 				}
 			}

@@ -42,7 +42,7 @@ public class ImportP1 extends JPanel{
 		//表格
 		cList=gc.getCommodity();
 		setData(cList);
-		String[] columnTitle={"","编号","名称","型号","默认进价","库存数量"};
+		String[] columnTitle={"","编号","名称","型号","默认价格","物流数量"};
 		commoditytable = new JTable(new TableModel(data, columnTitle));
 		commoditytable.getColumnModel().getColumn(0).setMaxWidth(30);//设置第一列宽度
 		//确认面板
@@ -88,7 +88,7 @@ public class ImportP1 extends JPanel{
 		
 		//表格
 		setData(ivo.importList);
-		String[] columnTitle={"","编号","名称","型号","默认进价","此单快递接数量"};
+		String[] columnTitle={"","编号","名称","型号","默认价格","此单快递接数量"};
 		commoditytable = new JTable(new TableModel(data, columnTitle));
 		commoditytable.getColumnModel().getColumn(0).setMaxWidth(30);//设置第一列宽度
 		//确认面板

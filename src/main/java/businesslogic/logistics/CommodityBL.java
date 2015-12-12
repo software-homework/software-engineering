@@ -470,7 +470,7 @@ public class CommodityBL implements CommodityBLService,businesslogicservice.mana
 				else{
 					if(updateCommodity(cv, newCv, getFather(cv))){
 						if(newCv.number < newCv.dangerNumber){
-							sd.add(new MessageVO("库存报警",cv.commodityname,cv.model,newCv.number,"空",false));
+							sd.add(new MessageVO("物流报警",cv.commodityname,cv.model,newCv.number,"空",false));
 						}
 						return true;
 					}
@@ -496,7 +496,7 @@ public class CommodityBL implements CommodityBLService,businesslogicservice.mana
 				else{
 					if(updateCommodity(cv, newCv, getFather(cv))){
 						if(newCv.number < newCv.dangerNumber){
-							sd.add(new MessageVO("库存报警",cv.commodityname,cv.model,newCv.number,"空",false));
+							sd.add(new MessageVO("物流报警",cv.commodityname,cv.model,newCv.number,"空",false));
 						}
 						return true;
 					}

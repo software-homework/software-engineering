@@ -43,7 +43,7 @@ public class LogisticsLoss extends JDialog{
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setLayout(null);
 		this.setResizable(false);
-		this.setTitle("库存报损");
+		this.setTitle("物流报损");
 		this.setModal(true);
 		
 		label = new JLabel("报损数量：");
@@ -72,11 +72,11 @@ public class LogisticsLoss extends JDialog{
 					if(slbs.add(slv)){
 						JOptionPane.showMessageDialog(sl, "制定报损单成功！请等待总经理审批");
 						LogBLService lbs = new LogBL();
-						lbs.addLog(new LogVO(sm.uvo.name,"制定库存报损单"));
+						lbs.addLog(new LogVO(sm.uvo.name,"制定物流报损单"));
 						sl.dispose();
 					}
 					else{
-						JOptionPane.showMessageDialog(sl, "库存数量不足！");
+						JOptionPane.showMessageDialog(sl, "物流数量不足！");
 					}
 				}
 			}

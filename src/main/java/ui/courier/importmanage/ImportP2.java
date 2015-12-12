@@ -95,7 +95,7 @@ public class ImportP2 extends JPanel{
 		getrep.setEnabled(false);
 		customerbox=new JComboBox<String>(customername);
 		
-		String[] columnTitle={"数量(可修改)","编号","名称","型号","进价(可修改)","库存数量"};
+		String[] columnTitle={"数量(可修改)","编号","名称","型号","价格(可修改)","物流数量"};
 		data=cdata;
 		commoditytable = new JTable(new TableModel(data, columnTitle){
 			public boolean isCellEditable(int row, int column) {
@@ -157,7 +157,7 @@ public class ImportP2 extends JPanel{
 		getrep.setEnabled(false);
         getcustomer=new JLabel(ivo.customer,JLabel.CENTER);
 		
-		String[] columnTitle={"退货数量","编号","名称","型号","进价(可修改)","快递接数量"};
+		String[] columnTitle={"退货数量","编号","名称","型号","价格(可修改)","快递接数量"};
 		data=cdata;
 		commoditytable = new JTable(new TableModel(data, columnTitle){
 			public boolean isCellEditable(int row, int column) {

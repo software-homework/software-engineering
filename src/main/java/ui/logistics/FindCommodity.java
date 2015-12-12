@@ -65,7 +65,7 @@ public class FindCommodity extends JDialog{
 		jcb1.setLocation(50, 60);
 		this.add(jcb1);
 		
-		final JCheckBox jcb2 = new JCheckBox("数量、默认进价、默认售价、最近进价、最近售价");
+		final JCheckBox jcb2 = new JCheckBox("数量、默认价格、默认折扣、最近价格、最近折扣");
 		jcb2.setSize(430, 30);
 		jcb2.setLocation(50, 90);
 		this.add(jcb2);

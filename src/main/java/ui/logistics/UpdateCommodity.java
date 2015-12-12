@@ -55,12 +55,12 @@ public class UpdateCommodity extends JDialog{
 		label2.setSize(100, 30);
 		this.add(label2);
 		
-		label3 = new JLabel("默认进价：");
+		label3 = new JLabel("默认价格：");
 		label3.setLocation(30, 150);
 		label3.setSize(100, 30);
 		this.add(label3);
 		
-		label4 = new JLabel("默认售价：");
+		label4 = new JLabel("默认折扣：");
 		label4.setLocation(30, 210);
 		label4.setSize(100, 30);
 		this.add(label4);

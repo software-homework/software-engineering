@@ -39,7 +39,7 @@ public class SendPresent extends JDialog {
 		btnNext = new JButton("下一步");
 		btnNext.setEnabled(false);
 		btnCancel = new JButton("取消");
-		String[] columnTitle = {"","编号","名称","型号","库存数量","默认进价","默认售价","最近进价","最近售价"};
+		String[] columnTitle = {"","编号","名称","型号","物流数量","默认价格","默认折扣","最近价格","最近折扣"};
 		table = new JTable(new TableModel(data,columnTitle));
 		table.getColumnModel().getColumn(0).setMaxWidth(30);
 		panel=new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -69,7 +69,7 @@ public class SendPresent extends JDialog {
 		this.setLocation((int)(width - this.getWidth()) / 2,(int)(height - this.getHeight()) / 2);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
-		this.setTitle("库存赠送");
+		this.setTitle("物流赠送");
 		this.setModal(true);
 		
 		btnNext.addMouseListener(new MouseAdapter(){

@@ -263,15 +263,15 @@ public class LogisticsMain extends JFrame {
 		menu1 = new JMenu("系统");
 		menu2 = new JMenu("操作");
 		item1 = new JMenuItem("查找快递");
-		item2 = new JMenuItem("库存查看");
-		item3 = new JMenuItem("库存盘点");
-		item4 = new JMenuItem("库存赠送");
+		item2 = new JMenuItem("物流查看");
+		item3 = new JMenuItem("物流盘点");
+		item4 = new JMenuItem("物流赠送");
 		item5 = new JMenuItem("查看消息");
 		item6 = new JMenuItem("注销");
 		item7 = new JMenuItem("退出系统");
-		item8 = new JMenuItem("查看库存报溢单");
-		item9 = new JMenuItem("查看库存报损单");
-		item10 = new JMenuItem("查看库存赠送单");
+		item8 = new JMenuItem("查看物流报溢单");
+		item9 = new JMenuItem("查看物流报损单");
+		item10 = new JMenuItem("查看物流赠送单");
 		
 		item1.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
@@ -290,7 +290,7 @@ public class LogisticsMain extends JFrame {
 				commoditybl.checkStock();
 				new CheckLogistics(LogisticsMain.this);
 				LogBLService lbs = new LogBL();
-				lbs.addLog(new LogVO(uvo.name,"库存盘点"));
+				lbs.addLog(new LogVO(uvo.name,"物流盘点"));
 			}
 		});
 		
@@ -324,7 +324,7 @@ public class LogisticsMain extends JFrame {
 			public void mouseReleased(MouseEvent e){
 				new CheckLogisticsOverflow(LogisticsMain.this);
 				LogBLService lbs = new LogBL();
-				lbs.addLog(new LogVO(uvo.name,"查看库存报溢单"));
+				lbs.addLog(new LogVO(uvo.name,"查看物流报溢单"));
 			}
 		});
 		
@@ -332,7 +332,7 @@ public class LogisticsMain extends JFrame {
 			public void mouseReleased(MouseEvent e){
 				new CheckLogisticsLoss(LogisticsMain.this);
 				LogBLService lbs = new LogBL();
-				lbs.addLog(new LogVO(uvo.name,"查看库存报损单"));
+				lbs.addLog(new LogVO(uvo.name,"查看物流报损单"));
 			}
 		});
 		
@@ -340,7 +340,7 @@ public class LogisticsMain extends JFrame {
 			public void mouseReleased(MouseEvent e){
 				new CheckPresent(LogisticsMain.this);
 				LogBLService lbs = new LogBL();
-				lbs.addLog(new LogVO(uvo.name,"查看库存赠送单"));
+				lbs.addLog(new LogVO(uvo.name,"查看物流赠送单"));
 			}
 		});
 		
@@ -418,7 +418,7 @@ public class LogisticsMain extends JFrame {
 	}
 	
 	public void stockOverflow(JPopupMenu jpm){
-		JMenuItem jmi = new JMenuItem("库存报溢");
+		JMenuItem jmi = new JMenuItem("物流报溢");
 		jmi.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
 				new LogisticsOverflow(LogisticsMain.this);
@@ -428,7 +428,7 @@ public class LogisticsMain extends JFrame {
 	}
 	
 	public void stockLoss(JPopupMenu jpm){
-		JMenuItem jmi = new JMenuItem("库存报损");
+		JMenuItem jmi = new JMenuItem("物流报损");
 		jmi.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
 				new LogisticsLoss(LogisticsMain.this);

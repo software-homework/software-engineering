@@ -43,7 +43,7 @@ public class LogisticsOverflow extends JDialog{
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setLayout(null);
 		this.setResizable(false);
-		this.setTitle("库存报溢");
+		this.setTitle("物流报溢");
 		this.setModal(true);
 		
 		label = new JLabel("报溢数量：");
@@ -72,7 +72,7 @@ public class LogisticsOverflow extends JDialog{
 					sofbs.add(sofv);
 					JOptionPane.showMessageDialog(so, "制定报溢单成功！请等待总经理审批");
 					LogBLService lbs = new LogBL();
-					lbs.addLog(new LogVO(sm.uvo.name,"制定库存报溢单"));
+					lbs.addLog(new LogVO(sm.uvo.name,"制定物流报溢单"));
 					so.dispose();
 				}
 			}

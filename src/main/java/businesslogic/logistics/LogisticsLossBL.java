@@ -130,7 +130,7 @@ public class LogisticsLossBL implements LogisticsLossBLService,businesslogicserv
 					newCv.number = cv.number - sofv.lossNumber;
 					if(cb.updateCommodity(cv, newCv, cb.getFather(cv))){
 						if(newCv.number < newCv.dangerNumber){
-							mb.add(new MessageVO("库存报警",cv.commodityname,cv.model,newCv.number,"空",false));
+							mb.add(new MessageVO("物流报警",cv.commodityname,cv.model,newCv.number,"空",false));
 						}
 						return true;
 					}

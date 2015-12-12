@@ -7,7 +7,7 @@ import vo.logistics.CategoryVO;
 import vo.logistics.CommodityVO;
 
 public class CommodityTable implements TableModel{
-	public String column[] = new String[]{"快递编号","快递名称", "型号", "数量", "默认进价", "默认售价", "最近一次进价", "最近一次售价"};
+	public String column[] = new String[]{"快递编号","快递名称", "型号", "数量", "默认价格", "默认折扣", "最近一次价格", "最近一次折扣"};
 	public LogisticsMain sm;
 	public CategoryVO cv;
 	

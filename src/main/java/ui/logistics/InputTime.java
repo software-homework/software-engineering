@@ -38,7 +38,7 @@ public class InputTime extends JDialog {
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setLayout(null);
 		this.setResizable(false);
-		this.setTitle("库存查看");
+		this.setTitle("物流查看");
 		this.setModal(true);
 		
 		label1 = new JLabel("起始日期：");
@@ -134,13 +134,13 @@ public class InputTime extends JDialog {
 					}
 					
 					if(cs.merge(start.getText(), end.getText()).size() == 0){
-						JOptionPane.showMessageDialog(it, "此时间段内没有出入库记录！");
+						JOptionPane.showMessageDialog(it, "此时间段内没有出接单记录！");
 					}
 					else{
 						ss.stockList = cs.merge(start.getText(), end.getText());
 						JOptionPane.showMessageDialog(it, "查看成功！");
 						LogBLService lbs = new LogBL();
-						lbs.addLog(new LogVO(sm.uvo.name,"库存查看"));
+						lbs.addLog(new LogVO(sm.uvo.name,"物流查看"));
 						ss.updateTable();
 						it.dispose();
 					}

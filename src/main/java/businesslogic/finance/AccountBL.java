@@ -318,7 +318,7 @@ public class AccountBL implements AccountBLService, businesslogicservice.manager
 					id[i][0] = cashExpenses.get(i - documents.size()).id;
 			}
 		}
-		else if(billtype.equals("库存类单据")){
+		else if(billtype.equals("物流类单据")){
 			stockLoss = getStockLoss.getCheckedStockLoss();
 			stockOverFlow = getStockOverFlow.getCheckedStockOverflow();
 			stockPresent = getStockPresent.getCheckedPresent();

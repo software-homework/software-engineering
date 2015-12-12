@@ -42,7 +42,7 @@ public class SendDanger extends JDialog{
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setLayout(null);
 		this.setResizable(false);
-		this.setTitle("库存报警");
+		this.setTitle("物流报警");
 		this.setModal(true);
 		
 		label = new JLabel("警戒值：");
@@ -86,7 +86,7 @@ public class SendDanger extends JDialog{
 						if(cs.sendDanger(cv, Integer.parseInt(number.getText()))){
 							JOptionPane.showMessageDialog(sd, "设置成功！");
 						    LogBLService lbs = new LogBL();
-							lbs.addLog(new LogVO(sm.uvo.name,"设置库存警戒值"));
+							lbs.addLog(new LogVO(sm.uvo.name,"设置物流警戒值"));
 						    sd.dispose();
 						}
 						else{

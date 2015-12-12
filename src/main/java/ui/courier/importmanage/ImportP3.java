@@ -79,7 +79,7 @@ public class ImportP3 extends JPanel{
 		}
 		gettotal=new JLabel(String.valueOf(t),JLabel.CENTER);
 		
-		String[] columnTitle={"编号","名称","型号","进价","数量","金额"};
+		String[] columnTitle={"编号","名称","型号","价格","数量","金额"};
 		commoditytable=new JTable(new TableModel(data,columnTitle){
 			public boolean isCellEditable(int row, int column) {
 				return false;

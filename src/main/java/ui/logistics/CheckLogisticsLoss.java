@@ -31,7 +31,7 @@ public class CheckLogisticsLoss extends JDialog{
 		this.setLocation((int)(width - this.getWidth()) / 2,(int)(height - this.getHeight()) / 2);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
-		this.setTitle("库存报溢单列表");
+		this.setTitle("物流报溢单列表");
 		this.setModal(true);
 		
 		table = new JTable();

@@ -38,7 +38,7 @@ public class CheckLogistics extends JDialog{
 		this.setLocation((int)(width - this.getWidth()) / 2,(int)(height - this.getHeight()) / 2);
 		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		this.setResizable(false);
-		this.setTitle("库存盘点");
+		this.setTitle("物流盘点");
 		this.setModal(true);
 		
 		this.stocksnapList = ssbs.showStocksnap();
@@ -53,14 +53,14 @@ public class CheckLogistics extends JDialog{
 	public void createExcel(String path) {
 		try{
 			WritableWorkbook wbook = Workbook.createWorkbook(new File(path));
-			WritableSheet wsheet = wbook.createSheet("库存盘点", 0);
+			WritableSheet wsheet = wbook.createSheet("物流盘点", 0);
 			WritableFont wf = new WritableFont(WritableFont.ARIAL, 10,WritableFont.NO_BOLD, false);
 			WritableCellFormat titleFormat = new WritableCellFormat(wf);
 			
 			CellView cellView = new CellView();  
 			cellView.setAutosize(true); 
 			
-			String column[] = new String[]{"行号","快递名称", "型号", "库存数量", "库存均价", "批次", "批号", "出厂日期"};
+			String column[] = new String[]{"行号","快递名称", "型号", "物流数量", "物流均价", "批次", "批号", "出厂日期"};
 			for(int i = 0;i < column.length;i ++){
 				Label excelTitle = new Label(i, 0, column[i], titleFormat);
 				wsheet.addCell(excelTitle);

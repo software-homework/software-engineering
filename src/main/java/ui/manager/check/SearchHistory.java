@@ -47,7 +47,7 @@ public class SearchHistory extends SearchDialog{
 		label6 = new JLabel("仓库：", JLabel.RIGHT);
 		text1 = new JTextField();
 		text2 = new JTextField();
-		comboBox = new JComboBox<String>(new String[]{"销售类单据", "快递接类单据", "财务类单据", "库存类单据"});
+		comboBox = new JComboBox<String>(new String[]{"销售类单据", "快递接类单据", "财务类单据", "物流类单据"});
 		text3 = new JTextField();
 		text4 = new JTextField();
 		text5 = new JTextField("1");

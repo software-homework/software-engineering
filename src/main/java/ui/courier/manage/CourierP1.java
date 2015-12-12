@@ -38,7 +38,7 @@ public class CourierP1 extends JPanel{
 		//表格
 		cList=gc.getCommodity();
 		setData(cList);
-		String[] columnTitle={"","编号","名称","型号","默认售价","库存数量"};
+		String[] columnTitle={"","编号","名称","型号","默认折扣","物流数量"};
 		commoditytable = new JTable(new TableModel(data, columnTitle));
 		commoditytable.getColumnModel().getColumn(0).setMaxWidth(30);//设置第一列宽度
 		//确认面板
@@ -82,7 +82,7 @@ public class CourierP1 extends JPanel{
 		this.setLayout(new BorderLayout());
 		//表格
 		setData(salesvo.salesList);
-		String[] columnTitle={"","编号","名称","型号","售价","此单销售数量"};
+		String[] columnTitle={"","编号","名称","型号","折扣","此单销售数量"};
 		commoditytable = new JTable(new TableModel(data, columnTitle));
 		commoditytable.getColumnModel().getColumn(0).setMaxWidth(30);//设置第一列宽度
 		//确认面板
