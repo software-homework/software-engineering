@@ -24,7 +24,7 @@ import businesslogic.courier.CustomerBL;
 import businesslogicservice.LogBLService;
 import businesslogicservice.courier.CustomerBLService;
 import ui.TableModel;
-import ui.courier.SalesMain;
+import ui.courier.CourierMain;
 import vo.LogVO;
 import vo.courier.CustomerVO;
 
@@ -44,8 +44,8 @@ public class CustomerPanel extends JPanel{
 	JLabel label;
 	TextField cText;
 	JPanel panel;
-	SalesMain salesmain;
-	public CustomerPanel(ArrayList<CustomerVO> list,SalesMain sm){
+	CourierMain salesmain;
+	public CustomerPanel(ArrayList<CustomerVO> list,CourierMain sm){
 		logbl=new LogBL();
 		salesmain=sm;
 		cbl=new CustomerBL();

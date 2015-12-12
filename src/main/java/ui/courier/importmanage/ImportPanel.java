@@ -16,7 +16,7 @@ import javax.swing.JTable;
 import businesslogic.courier.ImportBL;
 import businesslogicservice.courier.ImportBLService;
 import ui.TableModel;
-import ui.courier.SalesMain;
+import ui.courier.CourierMain;
 import vo.courier.ImportVO;
 import vo.logistics.CommodityVO;
 
@@ -34,8 +34,8 @@ public class ImportPanel extends JPanel{
 	JPanel panel;
 	int selectrow;
 	
-	SalesMain salesmain;
-	public ImportPanel(SalesMain sm){
+	CourierMain salesmain;
+	public ImportPanel(CourierMain sm){
 		salesmain=sm;
 		ibl=new ImportBL();
 		

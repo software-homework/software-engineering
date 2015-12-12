@@ -29,7 +29,7 @@ import ui.user.UserInfo;
 import vo.user.UserVO;
 
 @SuppressWarnings("serial")
-public class SalesMain extends JFrame {
+public class CourierMain extends JFrame {
 	CustomerBLService customerbl;
 	ImportBLService importbl;
 	CourierBLService salesbl;
@@ -44,7 +44,7 @@ public class SalesMain extends JFrame {
 	private String userlevel;
 	UserVO uvo;
 
-	public SalesMain(UserVO uservo) {
+	public CourierMain(UserVO uservo) {
 		customerbl = new CustomerBL();
 		importbl = new ImportBL();
 		salesbl = new CourierBL();
@@ -96,7 +96,7 @@ public class SalesMain extends JFrame {
 		ActionListener addsaleslistener = new addsalesListener();
 		addsales.addActionListener(addsaleslistener);
 		// 客户管理
-		panel = new CustomerPanel(customerbl.ShowC(), SalesMain.this);
+		panel = new CustomerPanel(customerbl.ShowC(), CourierMain.this);
 		this.getContentPane().add(panel, BorderLayout.CENTER);
 		// 设置状态栏
 		statusBar = new JLabel(" ");
@@ -132,7 +132,7 @@ public class SalesMain extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			getContentPane().remove(panel);
 
-			panel = new CustomerPanel(customerbl.ShowC(), SalesMain.this);
+			panel = new CustomerPanel(customerbl.ShowC(), CourierMain.this);
 			getContentPane().add(panel, BorderLayout.CENTER);
 
 			getContentPane().revalidate();
@@ -143,7 +143,7 @@ public class SalesMain extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			getContentPane().remove(panel);
 
-			panel = new ImportPanel(SalesMain.this);
+			panel = new ImportPanel(CourierMain.this);
 			getContentPane().add(panel, BorderLayout.CENTER);
 
 			getContentPane().revalidate();
@@ -154,7 +154,7 @@ public class SalesMain extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			getContentPane().remove(panel);
 
-			panel = new CourierPanel(SalesMain.this);
+			panel = new CourierPanel(CourierMain.this);
 			getContentPane().add(panel, BorderLayout.CENTER);
 
 			getContentPane().revalidate();
@@ -184,7 +184,7 @@ public class SalesMain extends JFrame {
 
 	class keyListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			new UserInfo(uvo, SalesMain.this);
+			new UserInfo(uvo, CourierMain.this);
 		}
 	}
 
