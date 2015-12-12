@@ -71,7 +71,7 @@ public class LoginFrame extends JFrame implements ActionListener
 	    	this.add(jl[i]);
 	    }
 	    //-------------------------------------------------------------------------
-	    String[] s1 = {"管理员", "库存管理人员", "进货销售人员", "财务人员", "总经理"};
+	    String[] s1 = {"管理员", "物流人员", "进货销售人员", "财务人员", "总经理"};
 	    typeBC = new JComboBox<String>(s1);
 	    typeBC.setSize(widthText, heightText);
 	    typeBC.setLocation(380, 1 * (heightLabel + 10) + 100);
@@ -154,7 +154,7 @@ public class LoginFrame extends JFrame implements ActionListener
 				
 				if(isSuccess)
 				{
-					if(((String)typeBC.getSelectedItem()).equals("库存管理人员"))
+					if(((String)typeBC.getSelectedItem()).equals("物流人员"))
 					{
 						new StockMain();
 					}

@@ -149,7 +149,7 @@ public class AdminFrame extends JFrame implements ActionListener{
 				else if(!(((String)this.table.getValueAt(i, 0)).equals("总经理") ||
 						((String)this.table.getValueAt(i, 0)).equals("财务人员") ||
 						((String)this.table.getValueAt(i, 0)).equals("管理员") ||
-						((String)this.table.getValueAt(i, 0)).equals("库存管理人员") ||
+						((String)this.table.getValueAt(i, 0)).equals("物流人员") ||
 						((String)this.table.getValueAt(i, 0)).equals("进货销售人员"))){
 					JOptionPane.showMessageDialog(null, "存在非法用户类型!", null, 0);
 					break;

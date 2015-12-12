@@ -64,7 +64,7 @@ public class DialogAdd extends JDialog implements ActionListener
 	    	this.add(jl[i]);
 	    }
 	    //-------------------------------------------------------------------------
-	    String[] s1 = {"库存管理人员", "进货销售人员", "财务人员", "总经理"};
+	    String[] s1 = {"物流人员", "进货销售人员", "财务人员", "总经理"};
 	    typeBC = new JComboBox<String>(s1);
 	    typeBC.setSize(widthText, heightText);
 	    typeBC.setLocation((width - 250) / 2 + 100, 1 * (heightLabel + 10));

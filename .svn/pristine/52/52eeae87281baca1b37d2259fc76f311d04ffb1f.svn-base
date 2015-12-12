@@ -77,7 +77,7 @@ public class StockMain extends JFrame {
 		this.setLocation((int)(width - this.getWidth()) / 2,(int)(height - this.getHeight()) / 2);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(true);
-		this.setTitle("进销存系统-库存管理人员");
+		this.setTitle("进销存系统-物流人员");
 		
 		label = new JLabel("状态栏");
 		toolBar = new JToolBar();
